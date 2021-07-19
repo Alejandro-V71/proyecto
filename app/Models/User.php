@@ -40,4 +40,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //relacion uno a muchos con la tabla motocicleta
+    public function motocicletas(){
+
+        return $this->hasMany(Motocicleta::class);
+    }
+
+    //relacion uno a mucho socn la tabla solicitud de servicio
+    public function solicitudesServicio(){
+        return $this->hasMany(SolicitudServicio::class);
+    }
 }
