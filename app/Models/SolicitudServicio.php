@@ -20,4 +20,10 @@ class SolicitudServicio extends Model
     public function estados(){
         return $this->belongsToMany(Estado::class,'estado_solicitud_servicio','solicitud_id','estado_id');
     }
+
+    //relacion uno a muchos con la tabla detalle de solicitud
+
+    public function detalleSolicitudes(){
+        return $this->hasMany(DetalleSolicitud::class);
+    }
 }
