@@ -247,11 +247,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Usuario',
+            'url'         => 'dash/asesor/usuario',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'can'  => 'dash.usuario.index',
+
         ],
         ['header' => 'account_settings'],
         [
