@@ -9,6 +9,7 @@ class Repuesto extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombreRepuesto','descripcionRepuesto','precioRepuesto'];
     //relacion  muchos a muchos detalle solliciutd
 
     public function detalleSolicitudes(){

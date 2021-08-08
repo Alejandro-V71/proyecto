@@ -38,4 +38,5 @@ class UserSeeder extends Seeder
             'password' => bcrypt('Cs123456')
         ])->assignRole('Cliente');
     }
+    
 }

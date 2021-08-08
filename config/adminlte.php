@@ -253,6 +253,13 @@ return [
             'can'  => 'dash.usuario.index',
 
         ],
+        [
+            'text'        => 'Repuesto',
+            'url'         => 'dash/tecnico/repuestos',
+            'icon'        => 'far fa-fw fa-file',
+          
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
