@@ -9,6 +9,16 @@ class SolicitudServicio extends Model
 {
     use HasFactory;
 
+
+
+    protected $fillable = [
+
+        'title',
+        'horaSolcitudServicio',
+        'start',
+        'end',
+        'descripcionProblema'
+    ];
     //relacion inversa con la tabla user
 
     public function user(){

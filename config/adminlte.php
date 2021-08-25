@@ -211,7 +211,7 @@ return [
     'enabled_laravel_mix' => false,
     'laravel_mix_css_path' => 'css/app.css',
     'laravel_mix_js_path' => 'js/app.js',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -257,7 +257,14 @@ return [
             'text'        => 'Repuesto',
             'url'         => 'dash/tecnico/repuestos',
             'icon'        => 'far fa-fw fa-file',
-          
+
+
+        ],
+        [
+            'text'        => 'Calendario',
+            'url'         => 'dash/tecnico/calendario',
+            'icon'        => 'far fa-fw fa-file',
+
 
         ],
         ['header' => 'account_settings'],

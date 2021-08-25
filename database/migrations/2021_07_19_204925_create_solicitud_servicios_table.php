@@ -15,9 +15,12 @@ class CreateSolicitudServiciosTable extends Migration
     {
         Schema::create('solicitud_servicios', function (Blueprint $table) {
             $table->id();
+            $table->string("title");
             $table->time("horaSolcitudServicio");
-            $table->date("fechaSolicitudServicio");
             $table->longText("descripcionProblema");
+            $table->dateTime('start');
+            $table->dateTime('end');
+
 
             //relacion uno muchos con la tabla usuario
 
