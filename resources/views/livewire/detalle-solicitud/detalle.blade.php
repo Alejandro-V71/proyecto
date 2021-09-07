@@ -9,7 +9,9 @@
                   {{ session('message') }}
                 </div>
             @endif
+
                 <table class="table table-bordered mt-5 table table-hover text-center">
+                    <button type="submit" wire:click="storeDetalle()" data-toggle="modal" data-target="#storeDetalle" class="btn btn-primary btn-sm">Nuevo</button>
                     <thead class="table-primary">
                         <tr class="bg-indigo-600 text-dark">
                             <th class="px-4 py-2">Id</th>
@@ -25,10 +27,10 @@
                         <td class="border px-4 py-2">{{$value->id}}</td>
                         <td class="border px-4 py-2">{{$value->diagnostico}}</td>
                         <td class="border px-4 py-2">{{$value->solicitudServicio->title}}</td>
-                        <td class="border px-4 py-2">{{$value->Servicio->nombreServicio}}</td>
+                        <td class="border px-4 py-2">{{$value->servicio->nombreServicio}}</td>
                         <td>
-                            <button type="submit" wire:click="editar({{ $value->id }})" data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm">Editar</button>
-                            <button type="submit" wire:click="delete({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
+                            <button type="submit" wire:click="show({{ $value->id }})" data-toggle="modal" data-target="#updateDetalle" class="btn btn-primary btn-sm">Editar</button>
+                            <button type="submit" wire:click="deleteDetalle({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
                         </td>
                     </tr>
                 @endforeach

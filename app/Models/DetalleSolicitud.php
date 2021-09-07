@@ -12,20 +12,20 @@ class DetalleSolicitud extends Model
     protected $fillable = [
         'id',
         'diagnostico',
-        'solicitud_servicio_id	',
+        'solicitud_servicio_id',
         'servicio_id',
     ];
 
     // relacion muchos a uno con la tabla servicio
 
     public function servicio(){
-        return $this->belongsTo(Servicio::class);
+        return $this->belongsTo(Servicio::class, 'servicio_id')->withDefault();
     }
 
     //relacion uno a muchos con la tabla solicitud de srvicio
 
     public function solicitudServicio(){
-        return $this->belongsTo(SolicitudServicio::class);
+        return $this->belongsTo(SolicitudServicio::class, 'solicitud_servicio_id')->withDefault();
     }
 
     //relacion muchos a muchos con repouesto

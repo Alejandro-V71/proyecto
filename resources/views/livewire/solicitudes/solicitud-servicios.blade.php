@@ -1,8 +1,10 @@
 <div>
     @include('livewire.solicitudes.createSolicitud')
     @include('livewire.solicitudes.updateSolicitud')
-
+    @include('livewire.detalle-solicitud.detalleModal')
+    @include('livewire.detalle-solicitud.detalle')
     <div class="py-12">
+        <button type="submit" wire:click="" data-toggle="collapse" href="#mostrarDetalles" class="btn btn-primary btn-sm">Detalles</button>
         <div class="max-w-7x1 mx-auto sm:px6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
                 @if (session()->has('message'))
@@ -38,6 +40,7 @@
                         <td>
                             <button type="submit" wire:click="editar({{ $value->id }})"  data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm">Editar</button>
                             <button type="submit" wire:click="delete({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
+                            <button type="submit"  wire:click="render({{ $value->id }})" data-toggle="modal" data-target="#detalleModal" class="btn btn-primary btn-sm">Detalles</button>
                         </td>
                     </tr>
                 @endforeach

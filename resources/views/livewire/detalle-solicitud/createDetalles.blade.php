@@ -1,11 +1,6 @@
 <div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
-        Nuevo
-    </button>
-
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="storeDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,10 +18,10 @@
                         </div>
                         <div>
                             <label>Solicitud</label>
-                            <select wire:model="solicitud_servicio_id" class="form-control  @error('solicitud_servicio_id') is-invalid @enderror">
+                            <select wire:model="solicitud_servicio_id" class="form-control @error('solicitud_servicio_id') is-invalid @enderror">
                                 <option value="">Solicitud</option>
                                 @foreach ($solicitudes as $solicitud)
-                                <option value="{{$solicitud->id}}">{{$solicitud->descripcionProblema}}</option>
+                                <option value="{{$solicitud->id}}">{{$solicitud->title}}</option>
                                 @endforeach
                             </select>
                             @error('solicitud_servicio_id')<span class="invalid-freedback"> {{$message}} </span> @enderror
@@ -45,10 +40,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" wire:click.prevent="save()" wire:click.prevent="store()" class="btn btn-primary close-modal">Guardar</button>
+                    <button type="submit" wire:click.prevent="storeDetalle()" class="btn btn-primary close-modal">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
     </div>
-

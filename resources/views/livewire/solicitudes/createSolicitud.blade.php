@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción del problema</label>
-                            <input type="text" id="descripcion" class="form-control  @error('descripcionProblema') is-invalid @enderror" wire:model="descripcionProblema" placeholder="Descripcion">
+                            <input type="textarea" id="descripcion" class="form-control  @error('descripcionProblema') is-invalid @enderror" wire:model="descripcionProblema" placeholder="Descripcion">
                             @error('descripcionProblema')<span class="invalid-freedback"> {{$message}} </span> @enderror
                         </div>
                     </form>

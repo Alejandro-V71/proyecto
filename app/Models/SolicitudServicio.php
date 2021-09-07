@@ -22,7 +22,7 @@ class SolicitudServicio extends Model
     //relacion inversa con la tabla user
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
     //relacion de uno a muchos con la tabla solicitud estado
