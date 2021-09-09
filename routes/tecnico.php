@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Rerporte\PdfEstadoController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Livewire\ReporteEstadoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,3 +19,9 @@ Route::get('dash/tecnico/calendario', function(){
 Route::post('dash/tecnico/calendario/agregar',[SolicitudController::class,'store']);
 Route::post('dash/tecnico/calendario/editar/{id}',[SolicitudController::class,'edit']);
 Route::get('dash/tecnico/calendario/mostrar',[SolicitudController::class,'index']);
+
+Route::get('dash/tecnico/reporte', function(){
+
+    return view('dash.reporte.index');
+});
+Route::get('dash/tecnico/reporte/estado/{problema}',[ReporteEstadoController::class ,'PDF']);

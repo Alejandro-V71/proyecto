@@ -22,7 +22,7 @@ class CreateDetalleSolicitudsTable extends Migration
             $table->unsignedBigInteger("solicitud_servicio_id")->nullable();
             $table->unsignedBigInteger("servicio_id")->nullable();
 
-            $table->foreign("solicitud_servicio_id")->references("id")->on("servicios")->onDelete("set null");
+            $table->foreign("solicitud_servicio_id")->references("id")->on("solicitud_servicios")->onDelete("set null");
             $table->foreign("servicio_id")->references("id")->on("servicios")->onDelete("set null");
 
             $table->timestamps();
