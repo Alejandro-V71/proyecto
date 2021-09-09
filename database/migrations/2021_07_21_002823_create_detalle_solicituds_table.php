@@ -15,7 +15,7 @@ class CreateDetalleSolicitudsTable extends Migration
     {
         Schema::create('detalle_solicituds', function (Blueprint $table) {
             $table->id();
-            $table->string("diagnostico", 100);
+            $table->text("diagnostico");
 
             //relacion con con la tabla servicio y solicitud de servicio
 

@@ -9,7 +9,8 @@ class Repuesto extends Model
 {
     use HasFactory;
 
-    //relacion  muchos a muchos detalle soliciutd
+    protected $fillable = ['nombreRepuesto','descripcionRepuesto','precioRepuesto'];
+    //relacion  muchos a muchos detalle solliciutd
 
     public function detalleSolicitudes(){
         return $this->belongsToMany(DetalleSolicitud::class);

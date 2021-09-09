@@ -212,6 +212,7 @@ return [
     'laravel_mix_css_path' => 'css/app.css',
     'laravel_mix_js_path' => 'js/app.js',
 
+
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -247,40 +248,26 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Solicitudes',
-            'url'         => 'dash/asesor/solicitudes',
-            'icon'        => 'far fa-fw fa-file',
-            'can'  => 'dash.solicitudes.index',
-        ],
-        [
-            'text'        => 'Estado de solicitud',
-            'url'         => 'dash/asesor/estadoSolicitud',
-            'icon'        => 'far fa-fw fa-file',
-            'can'  => 'dash.solicitudes.estado',
-        ],
-        [
-            'text'        => 'Detalle solicitud',
-            'url'         => 'dash/asesor/detalle',
-            'icon'        => 'far fa-fw fa-file',
-            'can'  => 'dash.solicitudes.detalle',
-        ],
-        [
-            'text'        => 'Servicio',
-            'url'         => 'dash/asesor/servicio',
-            'icon'        => 'far fa-fw fa-file',
-            'can'  => 'dash.servicios.servicio',
-        ],
-        [
-            'text'        => 'Usuarios',
-            'url'         => 'dash/asesor/usuario',
             'icon'        => 'far fa-fw fa-file',
             'can'  => 'dash.usuario.index',
 
         ],
+        [
+            'text'        => 'Repuesto',
+            'url'         => 'dash/tecnico/repuestos',
+            'icon'        => 'far fa-fw fa-file',
 
+
+        ],
+        [
+            'text'        => 'Calendario',
+            'url'         => 'dash/tecnico/calendario',
+            'icon'        => 'far fa-fw fa-file',
+
+
+        ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],

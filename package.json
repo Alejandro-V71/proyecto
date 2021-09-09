@@ -10,7 +10,6 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
@@ -23,5 +22,9 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "fullcalendar": "^5.9.0",
+        "sweetalert2": "^11.1.2"
     }
 }

@@ -8,28 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class SolicitudServicio extends Model
 {
     use HasFactory;
-    public $table = "solicitud_servicios";
-    protected $fillable = [
-        'horaSolcitudServicio',
-        'fechaSolicitudServicio',
-        'descripcionProblema',
-        'user_id',
-        'title',
-        'Start',
-        'End',
-    ];
 
+    protected $fillable = [
+
+        'title',
+        'horaSolcitudServicio',
+        'start',
+        'end',
+        'descripcionProblema'
+    ];
     //relacion inversa con la tabla user
 
     public function user(){
-        return $this->belongsTo(User::class, 'user_id')->withDefault();
+        return $this->belongsTo(User::class);
     }
 
-    //relacion de uno a muchos con la tabla solicitud estado
-    public function solictudEstados(){
-        return $this->hasMany(estado_solicitud_servicio::class);
-    }
+    //relacion muchos a muchos
 
+    public function estados(){
+        return $this->belongsToMany(Estado::class,'estado_solicitud_servicio','solicitud_id','estado_id');
+    }
     //relacion uno a muchos con la tabla detalle de solicitud
 
     public function detalleSolicitudes(){
