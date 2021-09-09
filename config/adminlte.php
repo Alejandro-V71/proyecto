@@ -266,6 +266,31 @@ return [
 
 
         ],
+        [
+            'text'        => 'Solicitudes',
+            'url'         => 'dash/asesor/solicitudes',
+            'icon'        => 'far fa-fw fa-file',
+            'can'  => 'dash.solicitudes.index',
+        ],
+        [
+            'text'        => 'Estado de solicitud',
+            'url'         => 'dash/asesor/estadoSolicitud',
+            'icon'        => 'far fa-fw fa-file',
+            'can'  => 'dash.solicitudes.estado',
+        ],
+        [
+            'text'        => 'Servicio',
+            'url'         => 'dash/asesor/servicio',
+            'icon'        => 'far fa-fw fa-file',
+            'can'  => 'dash.servicios.servicio',
+        ],
+        [
+            'text'        => 'Usuarios',
+            'url'         => 'dash/asesor/usuario',
+            'icon'        => 'far fa-fw fa-file',
+            'can'  => 'dash.usuario.index',
+
+        ],
         ['header' => 'account_settings'],
         [
             'url'  => 'admin/settings',

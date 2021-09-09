@@ -30,7 +30,7 @@
                 @foreach ($solicitudes as $value)
                     <tr>
                         <td class="border px-4 py-2">{{$value->id}}</td>
-                        <td class="border px-4 py-2">{{$value->User->name}}</td>
+                        <td class="border px-4 py-2">{{$value->user->name}}</td>
                         <td class="border px-4 py-2">{{$value->title}}</td>
                         <td class="border px-4 py-2">{{$value->Start}}</td>
                         <td class="border px-4 py-2">{{$value->End}}</td>

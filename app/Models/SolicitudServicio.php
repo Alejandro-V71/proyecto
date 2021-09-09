@@ -13,20 +13,20 @@ class SolicitudServicio extends Model
 
         'title',
         'horaSolcitudServicio',
-        'start',
-        'end',
-        'descripcionProblema'
+        'fechaSolicitudServicio',
+        'user_id',
+        'Start',
+        'End',
+        'descripcionProblema',
     ];
-    //relacion inversa con la tabla user
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
-    //relacion muchos a muchos
-
-    public function estados(){
-        return $this->belongsToMany(Estado::class,'estado_solicitud_servicio','solicitud_id','estado_id');
+    //relacion de uno a muchos con la tabla solicitud estado
+    public function solictudEstados(){
+        return $this->hasMany(estado_solicitud_servicio::class);
     }
     //relacion uno a muchos con la tabla detalle de solicitud
 

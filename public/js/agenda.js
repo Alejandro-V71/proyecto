@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     formulario.id.value = res.data.id;
                     formulario.title.value = res.data.title;
                     formulario.horaSolcitudServicio.value = res.data.horaSolcitudServicio;
-                    formulario.start.value = res.data.start;
-                    formulario.end.value = res.data.end;
+                    formulario.start.value = res.data.Start;
+                    formulario.end.value = res.data.End;
                     formulario.descripcionProblema.value = res.data.descripcionProblema;
 
                     $("#evento").modal("show");

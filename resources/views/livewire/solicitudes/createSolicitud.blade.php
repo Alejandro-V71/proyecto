@@ -16,7 +16,7 @@
                <div class="modal-body">
                     <form>
                         <div>
-                            <label>Solicitud</label>
+                            <label>Usuario</label>
                             <select wire:model="user_id" class="form-control  @error('user_id') is-invalid @enderror">
                                 <option value="">Usuarios</option>
                                 @foreach ($users as $user)
