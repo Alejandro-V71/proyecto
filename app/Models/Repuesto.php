@@ -9,7 +9,7 @@ class Repuesto extends Model
 {
     use HasFactory;
 
-    //relacion  muchos a muchos detalle solliciutd
+    //relacion  muchos a muchos detalle soliciutd
 
     public function detalleSolicitudes(){
         return $this->belongsToMany(DetalleSolicitud::class);
