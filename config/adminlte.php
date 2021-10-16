@@ -291,6 +291,13 @@ return [
             'can'  => 'dash.usuario.index',
 
         ],
+        [
+            'text'        => 'Roles',
+            'url'         => 'dash/asesor/rol',
+            'icon'        => 'far fa-fw fa-file',
+
+
+        ],
         ['header' => 'account_settings'],
         [
             'url'  => 'admin/settings',

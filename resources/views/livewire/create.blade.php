@@ -8,7 +8,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Nuevo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Rol</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -35,9 +35,16 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Registrar</button>
+                <button type="button" wire:click="store()"  class="btn btn-primary close-modal">Registrar</button>
+
+
             </div>
+
         </div>
+
+    </div>
+    <div>
+        
     </div>
 </div>
 

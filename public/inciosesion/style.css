@@ -1,0 +1,29 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.login__forgot{
+  list-style: none;
+  text-decoration: none;
+  color: #E75731;
+  outline: none;
+}
+.btn-orange{
+  background-color: #E75731 !important;
+  color: #fff !important;
+  outline: none;
+  padding: 5px;
+  border: none;
+  
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}

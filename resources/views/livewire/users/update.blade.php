@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <input type="hidden" wire:model="id_user">
                         <label for="exampleFormControlInput1">Name</label>
-                        <input type="text" class="form-control  @error('name') is-invalid @enderror" wire:model="name">
+                        <input type="text" class="form-control   @error('name') is-invalid @enderror" wire:model="name">
                         @error('name') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                     <div class="form-group">
@@ -21,11 +21,12 @@
                         <input type="email" class="form-control  @error('email') is-invalid @enderror" wire:model="email">
                         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
+                <button type="button" wire:click.prevent="update()" class="btn btn-success" data-dismiss="modal">Actualizar</button>
             </div>
        </div>
     </div>

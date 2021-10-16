@@ -1,39 +1,104 @@
 <div>
-    @include('livewire.users.create')
+
     @include('livewire.users.update')
-    <div class="py-12">
-        <div class="max-w-7x1 mx-auto sm:px6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                @if (session()->has('message'))
-                <div class="alert alert-info" style="margin-top:30px;">
-                  {{ session('message') }}
+
+    <div class="row mt-6" >
+
+        <div class="col">
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <div class="float-left mr-2  mb-2 w-100" >
+                    <input type="text" class="form-control" placeholder="Buscar" wire:model="search">
                 </div>
-            @endif
-                <table class="table table-bordered mt-5 table table-hover text-center">
-                    <thead class="table-primary">
-                        <tr class="bg-indigo-600 text-dark">
-                            <th class="px-4 py-2">Id</th>
-                            <th class="px-4 py-2">Nombre</th>
-                            <th class="px-4 py-2">Email</th>
-                            <th class="px-4 py-2">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                @foreach ($users as $value)
-                    <tr>
-                        <td class="border px-4 py-2">{{$value->id}}</td>
-                        <td class="border px-4 py-2">{{$value->name}}</td>
-                        <td class="border px-4 py-2">{{$value->email}}</td>
-                        <td>
-                            <button type="submit" wire:click="editar({{ $value->id }})" data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm">Editar</button>
-                            <button type="submit" wire:click="delete({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                @include('livewire.users.create')
+
+              <h3 class="mb-0 mt-3">Usuarios</h3>
             </div>
-        </div>
-    </div>
-    </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+          <tr>
+            <th scope="col" class="sort" data-sort="name">#</th>
+            <th scope="col" class="sort" data-sort="name">Nombre</th>
+            <th scope="col" class="sort" data-sort="name">Correo</th>
+            <th scope="col" class="sort" data-sort="name">Estado</th>
+            <th scope="col" class="sort" data-sort="name">Rol</th>
+            <th scope="col" class="sort" data-sort="name">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ( $users as $user )
+          <tr>
+            <th class="budget">{{$user->id}}</th>
+            <td class="budget">{{$user->name}}</td>
+            <td class="budget">{{$user->email}}</td>
+            <td class="budget">
+
+                @switch($user->Estado)
+                    @case(null)
+                    <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i>
+                        <span class="status">
+                            <span class="status" wire:click="$emit('estado',{{$user->id}})">Sin estado</span>
+                        </span>
+                    </span>
+                    @break
+                    @case(1)
+                    <span class="badge badge-dot mr-4">
+                        <i class="bg-success"></i>
+                        <span class="status" wire:click="$emit('estado',{{$user->id}})">Activo</span>
+                      </span>
+                    @break
+                    @case(2)
+                    <span class="badge badge-dot mr-4">
+                        <i class="bg-danger"></i>
+                        <span class="status" wire:click="$emit('estado',{{$user->id}})"> Inactivo</span>
+                    </span>
+                    @break
+
+                    @default
+
+                @endswitch
+
+
+
+
+
+
+            </td>
+
+            <td class="budget">
+             {{$user->getRoleNames()}}
+            </td>
+            <td class="budget">
+                <button data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $user->id }})" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+
+
+
+
+
+                </td>
+          </tr>
+          @endforeach
+
+        </tbody>
+    </table>
+
+  </div>
+  <!-- Card footer -->
+  <div>
+    {{$users->links()}}
+  </div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
 

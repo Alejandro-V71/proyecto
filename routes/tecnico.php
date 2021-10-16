@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('dash/tecnico/repuestos', function(){
 
     return view('dash.repuesto.index');
-});
+})->name('repuesto');
 
 Route::get('dash/tecnico/calendario', function(){
 

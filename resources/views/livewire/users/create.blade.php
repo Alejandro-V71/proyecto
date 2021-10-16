@@ -1,5 +1,5 @@
 <div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+<button type="button" wire:click="$emit('warningUser')" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
 	Nuevo
 </button>
 
@@ -15,27 +15,51 @@
             </div>
            <div class="modal-body">
                 <form>
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" placeholder="Nombre" wire:model="name">
-                        @error('name')<span class="invalid-freedback"> {{$message}} </span> @enderror
-                    </div>
+
                     <div class="form-group">
                         <label for="email">Correo</label>
                         <input type="email"  class="form-control  @error('email') is-invalid @enderror" id="email" wire:model="email" placeholder="Correo">
                         @error('email')<span class="invalid-freedback"> {{$message}} </span> @enderror
                     </div>
+
                     <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password"  class="form-control  @error('password') is-invalid @enderror" id="password" wire:model="password" placeholder="Contraseña">
-                        @error('password')<span class="invalid-freedback"> {{$message}} </span> @enderror
+                        <label for="role_user">Rol</label>
+                        <select wire:model="rol" class="form-control" id="">
+
+                        @foreach ($roles as $id => $role )
+                        <option value="{{$id}}">{{$role}}</option>
+
+                        @endforeach
+                    </select>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select wire:model="estado" name="estado" class="form-control" id="">
+
+
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+
+
+                    </select>
+
+
+                    </select>
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
-                <button type="submit"  wire:click.prevent="save()" wire:click.prevent="store()" class="btn btn-primary close-modal">Guardar</button>
+
+                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
+
+                <button type="submit"  wire:click="store()"class="btn btn-primary close-modal">Guardar</button>
+                
+
+
+
             </div>
+
         </div>
     </div>
 </div>

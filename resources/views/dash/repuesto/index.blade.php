@@ -1,43 +1,50 @@
-@extends('adminlte::page')
+@extends('layouts.dash')
 
-@section('title', 'Dashboard')
+@section('contenido')
+@livewire('repuestos')
+@endsection
 
-@section('content_header')
-    <h1>Repeusto</h1>
-@stop
 
-@section('content')
-    <p>Welcome to this beautiful admin panel.</p>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-
-                    <div class="card-body">
-
-                        @livewire('repuestos')
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     @livewireScripts
+
     <script type="text/javascript">
         window.livewire.on('RepuestoStore', () => {
             $('#registroRepuesto').modal('hide');
             $('#updateModal').modal('hide');
 
         });
+        //alerta de insercion y acutualización
+        Livewire.on('alert' , (message) =>{
+            Swal.fire(
+                'Buen trabajo!',
+                message,
+                'success'
+                )
+        });
+        //alerta de eliminación con  confirmación
+        Livewire.on('deleteRepuesto' , repuestoId =>{
+            Swal.fire({
+            title: 'Estás seguro de eliminar el registro?',
+            text: "Esta acción no se puede revertir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, elimínalo!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emitTo('repuestos' ,'delete' , repuestoId)
+
+                Swal.fire(
+
+                'Eliminado!',
+                'El registro fue eliminado correctamente',
+                'success'
+                )
+            }
+            })
+        });
     </script>
-@stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-
-@stop

@@ -2,105 +2,158 @@
 
 namespace App\Http\Livewire\Users;
 
+use App\Mail\CredencialesUsuario;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Str;
+
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Spatie\Permission\Models\Role;
 
 class Users extends Component
 {
     use WithPagination;
 
-    public $users,$name, $email, $password, $id_user;
-    public $modal = false;
-    protected $paginationTheme = 'bootstrap';
 
+    protected $listeners = ['store','cambiarEstado'];
+
+    public $search = "";
+
+    public
+           $name,
+           $email,
+            $estado,
+           $roles,
+            $rol,
+           $id_user;
+
+
+    public $updateMode= false;
+
+    protected $paginationTheme = 'bootstrap';
     protected $rules = [
-        'name' => 'required|min:6',
-        'email' => 'required|email',
-        'password' => 'required|min:6',
+        'estado' => 'required',
+        'email' => 'required',
+
+
     ];
 
-    public function updated($propertyName){
-        $this->validateOnly($propertyName);
-    }
 
-    public function save(){
-        $validation =$this->validate();
-        User::create($validation);
-    }
 
     public function render()
     {
-        $this->users = User::all();
-        return view('livewire.users.users');
-    }
-
-    public function limpiar(){
-        $this->name='';
-        $this->email='';
-        $this->id_user='';
-    }
-
-    public function store(){
-        $this->exampleMode = true;
-        User::updateOrCreate(['id'=>$this->id_user],
-        [
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-
+        $this->roles  = Role::all()->pluck('name','id');
+        return view('livewire.users.users',[
+           'users' =>  User::where('name','like','%' . $this->search. '%')
+            ->orWhere('email','like','%' . $this->search. '%')->paginate(10),
         ]);
+    }
 
-        session()->flash('message', 'Usuario creado correctamente');
+    //resetear los campos
 
-        $this->limpiar();
-
-        $this->emit('userGuardar'); // Close model to using to jquery
+    private function resetInputFields(){
+        $this->name = '';
+        $this->email= '';
+        $this->password= '';
 
     }
-    public function editar($id)
-    {
-        $this->updateMode = true;
-        $user = User::where('id',$id)->first();
-        $this->id_user = $id;
-        $this->name = $user->name;
-        $this->email = $user->email;
 
-    }
 
     public function cancel()
     {
         $this->updateMode = false;
-        $this->limpiar();
+        $this->resetInputFields();
+
 
     }
 
+    //Método para crear un nuevo Registro
+
+    public function store()
+    {
+
+        $this->validate();
+
+        $user =  User::create([
+
+            'name' => Str::random(8),
+            'email' => $this->email,
+            'password' => Hash::make(Str::random(8)),
+            'rol' => $this->rol,
+            'Estado' => $this->estado
+        ]);
+
+         $user->syncRoles($this->rol);
+
+
+         Mail::to($this->email)->send(new CredencialesUsuario($this->email));
+
+
+        $this->resetInputFields();
+
+        $this->emit('successUser');
+        $this->emit('UserStore'); // Close model to using to jquery
+
+    }
+
+    //Método para que se muestre el formulario de edición
+
+    public function edit($id)
+    {
+        $this->updateMode = true;
+        $user = User::where('id',$id)->first();
+        $this->id_user= $id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+
+
+    }
+
+
+    //Método para actualizar un registro
     public function update()
     {
-        $user = $this->validate([
-            'name' => 'required|min:6',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
+        $this->validate();
 
         if ($this->id_user) {
             $user = User::find($this->id_user);
             $user->update([
                 'name' => $this->name,
-                'email' => $this->email,
+                'email' => $this->email
             ]);
+
             $this->updateMode = false;
-            session()->flash('message', 'Usuario actualizado correctamente');
-            $this->limpiar();
+            session()->flash('message', 'Repuesto actualizado correctamente.');
+            $this->resetInputFields();
+
+            $this->emit('UserStore'); // Cierra el modal Utilizando  jquery*/
 
         }
     }
 
-    public function delete($id)
-    {
-        if($id){
-            User::where('id',$id)->delete();
-            session()->flash('message', 'Usuario eliminado correctamente');
+    //Funcion para cambiar de estado
+    public function cambiarEstado(User $user){
+
+        switch ($user->Estado) {
+            case null:
+                 $user->Estado = 1;
+            break;
+            case 1:
+                $user->Estado = 2;
+           break;
+           case 2:
+            $user->Estado = 1;
+        break;
+            default:
+                # code...
+                break;
         }
+        $user->save();
     }
+    //Funcion Eliminar
+
+
 }

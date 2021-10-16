@@ -8,11 +8,13 @@ use Livewire\WithPagination;
 
 
 
+
 class Repuestos extends Component
 {
 
     use WithPagination;
 
+    protected $listeners = ['delete'];
     public $search = "";
 
     public
@@ -39,7 +41,7 @@ class Repuestos extends Component
        // $this->repuestos = Repuesto::
         return view('livewire.repuestos',[
             'repuestos' =>Repuesto::where('nombreRepuesto','like','%' . $this->search. '%')
-            ->orWhere('descripcionRepuesto','like','%' . $this->search. '%')->paginate(2),
+            ->orWhere('descripcionRepuesto','like','%' . $this->search. '%')->paginate(10),
         ]);
     }
 
@@ -74,7 +76,8 @@ class Repuestos extends Component
             'precioRepuesto' => $this->precioRepuestos
         ]);
 
-        session()->flash('message', 'Nuevo repuesto creado correctamente.');
+       $this->emit('alert','El repuesto se creo correctamente');
+       $this->emit('render');
 
         $this->resetInputFields();
 
@@ -110,22 +113,23 @@ class Repuestos extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Repuesto actualizado correctamente.');
+
             $this->resetInputFields();
 
-            $this->emit('RepuestoStore'); // Cierra el modal Utilizando  jquery
 
+            $this->emit('RepuestoStore'); // Cierra el modal Utilizando  jquery
+            $this->emit('alert','Registro actualizado correctamente');
         }
     }
 
 
     //Funcion Eliminar
 
-    public function delete($id)
+    public function delete(Repuesto $repuesto)
     {
-        if($id){
-            Repuesto::where('id',$id)->delete();
-            session()->flash('message', 'Repeust Eliminado Corretamente.');
-        }
+
+            $repuesto->delete();
+
+
     }
 }

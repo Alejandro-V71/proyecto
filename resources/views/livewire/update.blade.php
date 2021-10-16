@@ -30,7 +30,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button"  wire:click.prevent="cancel()" class="btn btn-secondary close-btn" data-dismiss="modal" wire:click.prevent="cancel()">Cerrar</button>
+                <button type="button"  wire:click.prevent="cancel()" class="btn btn-secondary close-btn" data-dismiss="modal" >Cerrar</button>
                 <button type="button" wire:click.prevent="update()" class="btn btn-success close-modal">Guardar Cambios</button>
             </div>
         </div>
