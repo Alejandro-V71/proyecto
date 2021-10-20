@@ -13,16 +13,17 @@ class CredencialesUsuario extends Mailable
 
 
     protected $email;
-
+    protected $clave;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($email,$clave)
     {
         //
         $this->email = $email;
+        $this->clave = $clave;
 
     }
 
@@ -33,6 +34,7 @@ class CredencialesUsuario extends Mailable
      */
     public function build()
     {
-        return $this->from($this->email)->view('email.credenciales');
+        return $this->from($this->email)->view('email.credenciales')->with('email',$this->email)
+                                                                    ->with('clave' , $this->clave);
     }
 }

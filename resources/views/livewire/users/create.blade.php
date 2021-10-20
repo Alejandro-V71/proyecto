@@ -18,8 +18,16 @@
 
                     <div class="form-group">
                         <label for="email">Correo</label>
-                        <input type="email"  class="form-control  @error('email') is-invalid @enderror" id="email" wire:model="email" placeholder="Correo">
-                        @error('email')<span class="invalid-freedback"> {{$message}} </span> @enderror
+                        <input type="email"  class="form-control @error('email') is-invalid @enderror"  name="email"  id="email" wire:model="email" placeholder="Correo">
+                            @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="email-confirm">Confirmar Correo</label>
+                        <input type="email"   name="email_confirmation" class="form-control  @error('email_confirmation') is-invalid @enderror" id="email-confirm"  placeholder="Correo">
                     </div>
 
                     <div class="form-group">
@@ -36,7 +44,7 @@
                         <label for="estado">Estado</label>
                         <select wire:model="estado" name="estado" class="form-control" id="">
 
-
+                        <option value="0" selected>Sin estado<option>
                         <option value="1">Activo</option>
                         <option value="2">Inactivo</option>
 
@@ -44,17 +52,21 @@
                     </select>
 
 
-                    </select>
+
                     </div>
 
                 </form>
             </div>
             <div class="modal-footer">
+                <div>
+                    <button type="button"  id="cancelar"class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="enviar"    wire:click.prevent="store" wire:loading.attr="disabled"  class="btn btn-primary close-modal" wire:key="store">
+                        Guardar</button>
 
-                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
+                </div>
 
-                <button type="submit"  wire:click="store()"class="btn btn-primary close-modal">Guardar</button>
-                
+
+
 
 
 

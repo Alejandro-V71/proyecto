@@ -1,9 +1,10 @@
 @extends('layouts.dash')
 
 @section('contenido')
-    
+
 
     @livewire('users.users')
+  
 
 @endsection
 

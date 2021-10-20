@@ -21,6 +21,7 @@ class Users extends Component
     protected $listeners = ['store','cambiarEstado'];
 
     public $search = "";
+    
 
     public
            $name,
@@ -36,7 +37,7 @@ class Users extends Component
     protected $paginationTheme = 'bootstrap';
     protected $rules = [
         'estado' => 'required',
-        'email' => 'required',
+        'email' => 'required|unique:users|email|string',
 
 
     ];
@@ -48,7 +49,8 @@ class Users extends Component
         $this->roles  = Role::all()->pluck('name','id');
         return view('livewire.users.users',[
            'users' =>  User::where('name','like','%' . $this->search. '%')
-            ->orWhere('email','like','%' . $this->search. '%')->paginate(10),
+            ->orWhere('email','like','%' . $this->search. '%')
+            ->orWhere('Estado', $this->search)->paginate(6),
         ]);
     }
 
@@ -57,7 +59,9 @@ class Users extends Component
     private function resetInputFields(){
         $this->name = '';
         $this->email= '';
+        $this->rol = '';
         $this->password= '';
+        $this->estado = '';
 
     }
 
@@ -76,12 +80,13 @@ class Users extends Component
     {
 
         $this->validate();
+        $contrasena = Str::random(8);
 
         $user =  User::create([
 
             'name' => Str::random(8),
             'email' => $this->email,
-            'password' => Hash::make(Str::random(8)),
+            'password' =>  Hash::make($contrasena),
             'rol' => $this->rol,
             'Estado' => $this->estado
         ]);
@@ -89,7 +94,7 @@ class Users extends Component
          $user->syncRoles($this->rol);
 
 
-         Mail::to($this->email)->send(new CredencialesUsuario($this->email));
+         Mail::to($this->email)->send(new CredencialesUsuario($this->email,$contrasena));
 
 
         $this->resetInputFields();

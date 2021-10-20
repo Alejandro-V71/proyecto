@@ -4,6 +4,7 @@
 
     <div class="row mt-6" >
 
+
         <div class="col">
           <div class="card">
 
@@ -11,6 +12,7 @@
             <div class="card-header border-0">
                 <div class="float-left mr-2  mb-2 w-100" >
                     <input type="text" class="form-control" placeholder="Buscar" wire:model="search">
+
                 </div>
                 @include('livewire.users.create')
 
