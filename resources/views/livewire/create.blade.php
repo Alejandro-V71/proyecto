@@ -8,7 +8,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nuevo Rol</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Repuestos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -17,7 +17,7 @@
                 <form>
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control   @error('nombreRepuestos') is-invalid @enderror"  placeholder="ingrese Nombre" id="nombreRepuestos" wire:model="nombreRepuestos">
+                        <input type="text" class="form-control" name="nombreRepuestos" @error('nombreRepuestos') is-invalid @enderror"  placeholder="ingrese Nombre" id="nombreRepuestos" wire:model="nombreRepuestos">
                         @error('nombreRepuestos') <span class="invalid-feedback">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
 
     </div>
     <div>
-        
+
     </div>
 </div>
 

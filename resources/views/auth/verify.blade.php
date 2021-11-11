@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
+                <img src="{{asset('inciosesion/img/logoFinal.png')}}" class="text-center" width="500px" height="200px" lt="">
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">

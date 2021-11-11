@@ -21,7 +21,7 @@ class Users extends Component
     protected $listeners = ['store','cambiarEstado'];
 
     public $search = "";
-    
+
 
     public
            $name,

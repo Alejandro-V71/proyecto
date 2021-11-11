@@ -29,7 +29,7 @@ class Repuestos extends Component
     protected $paginationTheme = 'bootstrap';
     protected $rules = [
         'nombreRepuestos' => 'required',
-        'descripcionRepuestos' => 'required',
+        'descripcionRepuestos' => 'required|string|max:500',
         'precioRepuestos' => 'required',
 
     ];
