@@ -46,11 +46,12 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="dashboard.html">
+        <a class="nav-link " href="">
           <i class="ni ni-archive-2 text-orange"></i>
           <span class="nav-link-text">Reportes</span>
         </a>
       </li>
+
     </ul>
     </ul>
   </div>
