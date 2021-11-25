@@ -294,6 +294,8 @@ return [
         [
             'text'        => 'Roles',
             'url'         => 'dash/asesor/rol',
+            'text'        => 'Reporte',
+            'url'         => 'dash/tecnico/reporte',
             'icon'        => 'far fa-fw fa-file',
 
 

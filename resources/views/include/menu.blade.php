@@ -40,13 +40,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="dashboard.html">
+        <a class="nav-link " href="{{route('calendario')}}">
           <i class="ni ni-calendar-grid-58 text-orange"></i>
           <span class="nav-link-text">Calendario</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="">
+        <a class="nav-link " href="{{route('reporte')}}">
           <i class="ni ni-archive-2 text-orange"></i>
           <span class="nav-link-text">Reportes</span>
         </a>

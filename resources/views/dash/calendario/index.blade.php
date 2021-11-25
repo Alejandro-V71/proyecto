@@ -1,14 +1,12 @@
-@extends('adminlte::page')
+@extends('layouts.dash')
 
 
-@section('title', 'Dashboard')
 
-@section('content_header')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css">
-@stop
 
-@section('content')
+
+
+@section('contenido')
 
 <div class="card">
     <div class="container">
@@ -81,11 +79,9 @@
 
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
@@ -94,4 +90,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script type="text/javascript"src="{{ asset('js/agenda.js') }}" defer></script>
-@stop
