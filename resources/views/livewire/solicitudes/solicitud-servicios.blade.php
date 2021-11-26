@@ -19,7 +19,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
                     Nuevo
                 </button>
-              <h3 class="mb-0 mt-3">Solicitudes de servicios</h3>
+              <h3 class="mb-0 mt-3">Solicitud de servicio</h3>
             </div>
 
                 <!-- Light table -->
