@@ -10,7 +10,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="{{route('usuarios')}}">
+        <a class="nav-link active" href="{{route('usuarios')}}">
           <i class="ni ni-circle-08 text-orange"></i>
           <span class="nav-link-text">Usuarios</span>
         </a>
@@ -30,7 +30,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{route('solicitudesEstado')}}">
           <i class="ni ni-bullet-list-67 text-orange"></i>
-          <span class="nav-link-text">Solicitudes de estado</span>
+          <span class="nav-link-text">Estado de solicitud</span>
         </a>
       </li>
       <li class="nav-item">

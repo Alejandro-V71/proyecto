@@ -2,6 +2,15 @@
 
 
 @section('contenido')
+<div>
+<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Solicitudes</li>
+    </ol>
+  </nav>
+</div>
 <br>
 <button type="submit" data-toggle="collapse" href="#mostrarDetalles" class="btn btn-success btn-sm"><i class="fas fa-info-circle"></i> Detalles</button>
 <button type="submit" data-toggle="collapse" href="#table" class="btn btn-success btn-sm">Solicitudes</button>

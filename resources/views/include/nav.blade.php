@@ -15,6 +15,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </form>
+        <!--Breadcrumns-->
         <!-- Navbar links -->
         <ul class="navbar-nav align-items-center  ml-md-auto ">
           <li class="nav-item d-xl-none">
@@ -198,7 +199,9 @@
                 </span>
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">
-                      {{ Auth::user()->name }}</span>
+                      {{ Auth::user()->name }} <br>
+                      {{   Auth::user()->getRoleNames()}}
+                    </span>
                 </div>
               </div>
             </a>

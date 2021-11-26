@@ -17,8 +17,13 @@
                     <form>
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control   @error('nombreRepuestos') is-invalid @enderror"  placeholder="ingrese Nombre" id="nombreRepuestos" wire:model="nombreRepuestos">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                </div>
+                            <input type="text" class="form-control   @error('nombreRepuestos') is-invalid @enderror"  placeholder="Ingrese nombre" id="nombreRepuestos" wire:model="nombreRepuestos">
                             @error('nombreRepuestos') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                            </div>
                         </div>
                        <div>
                            @foreach ($permisos as $permiso )

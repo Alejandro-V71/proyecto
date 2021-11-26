@@ -11,28 +11,51 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="estadoServicio">Estado</label>
+                        <label for="estadoServicio">Estado de servicio</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-power-off"></i></span>
+                            </div>
                         <input type="text"  id="estadoServicio" class="form-control  @error('estadoServicio') is-invalid @enderror" placeholder="estadoServicio" wire:model="estadoServicio">
+                    </div>
                         @error('estadoServicio')<span class="invalid-freedback"> {{$message}} </span> @enderror
                     </div>
+
                     <div class="form-group">
-                        <label for="nombreServicio">nombreServicio</label>
+                        <label for="nombreServicio">Nombre servicio</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-file-signature"></i></span>
+                            </div>
                         <input type="text"  id="nombreServicio" class="form-control  @error('nombreServicio') is-invalid @enderror" placeholder="nombreServicio" wire:model="nombreServicio">
+                    </div>
                         @error('nombreServicio')<span class="invalid-freedback"> {{$message}} </span> @enderror
                     </div>
+
                     <div class="form-group">
-                        <label for="precioTotal">precioTotal</label>
+                        <label for="precioTotal">Precio total</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-donate"></i></span>
+                            </div>
                         <input type="number"  id="precioTotal" class="form-control  @error('precioTotal') is-invalid @enderror" placeholder="precioTotal" wire:model="precioTotal">
+                    </div>
                         @error('precioTotal')<span class="invalid-freedback"> {{$message}} </span> @enderror
                     </div>
-                    <div>
+
+                    <div class="form-group">
                         <label>Tipo de servicio</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-tools"></i></span>
+                            </div>
                         <select wire:model="tipo_de_servicio_id" class="form-control  @error('tipo_de_servicio_id') is-invalid @enderror">
                             <option value="">Servicio</option>
                             @foreach ($tiServicios as $servicio)
                             <option value="{{$servicio->id}}">{{$servicio->nombreTipoServicio}}</option>
                             @endforeach
                         </select>
+                    </div>
                         @error('tipo_de_servicio_id')<span class="invalid-freedback"> {{$message}} </span> @enderror
                     </div>
                 </form>

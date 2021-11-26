@@ -34,7 +34,13 @@ class EstadoSolicitudes extends Component
     ];
 
     public function updated($propertyName){
-        $this->validateOnly($propertyName);
+        $this->validateOnly($propertyName,[
+            'solicitud_id' => 'required',
+            'estado_id' => 'required',
+            'fechaIncio' => 'required|date|after_or_equal:yesterday',
+            'fechaFin' => 'required|date|after_or_equal:fechaIncio',
+        ]);
+
     }
 
     public function save(){

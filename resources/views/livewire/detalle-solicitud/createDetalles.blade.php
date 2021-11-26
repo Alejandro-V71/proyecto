@@ -13,29 +13,47 @@
                     <form>
                         <div class="form-group">
                             <label for="diagnostico">Diagnostico</label>
-                            <input type="text"  id="diagnostico" class="form-control  @error('diagnostico') is-invalid @enderror" placeholder="Diagnostico" wire:model="diagnostico">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                                </div>
+                            <input type="text"  id="diagnostico" class="form-control  @error('diagnostico') is-invalid @enderror" placeholder="Diagnostico de la solicitud de servicio" wire:model="diagnostico">
+                        </div>
                             @error('diagnostico')<span class="invalid-freedback"> {{$message}} </span> @enderror
                         </div>
+
                         <div>
                             <label>Solicitud</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lightbulb"></i></span>
+                                </div>
                             <select wire:model="solicitud_servicio_id" class="form-control @error('solicitud_servicio_id') is-invalid @enderror">
                                 <option value="">Solicitud</option>
                                 @foreach ($solicitudes as $solicitud)
                                 <option value="{{$solicitud->id}}">{{$solicitud->title}}</option>
                                 @endforeach
                             </select>
+                            </div>
                             @error('solicitud_servicio_id')<span class="invalid-freedback"> {{$message}} </span> @enderror
                         </div>
+
                         <div>
                             <label>Servicio</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-tools"></i></span>
+                                </div>
                             <select wire:model="servicio_id" class="form-control  @error('servicio_id') is-invalid @enderror">
                                 <option value="">Servicio</option>
                                 @foreach ($servicios as $servicio)
                                 <option value="{{$servicio->id}}">{{$servicio->nombreServicio}}</option>
                                 @endforeach
                             </select>
+                        </div>
                             @error('servicio_id')<span class="invalid-freedback"> {{$message}} </span> @enderror
                         </div>
+
                         <div>
                             <label>Repuestos</label>
                             <select wire:model="idRepuesto" multiple class="form-control  @error('') is-invalid @enderror">
