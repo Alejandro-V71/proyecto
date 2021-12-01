@@ -373,9 +373,7 @@
       </div> --}}
       @include('include.content')
       <!-- Footer -->
-      <footer class="footer pt-0">
-        @include('include.footer')
-      </footer>
+     
     </div>
   </div>
   <!-- Argon Scripts -->

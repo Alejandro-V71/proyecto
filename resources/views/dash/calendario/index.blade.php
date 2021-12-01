@@ -1,16 +1,10 @@
 @extends('layouts.dash')
 
-
-
-
-
-
-
 @section('contenido')
 
-<div class="card">
+<div class="card mt-5">
     <div class="container">
-        <div id="agenda">
+        <div id="agenda" class="mt-3">
 
         </div>
     </div>

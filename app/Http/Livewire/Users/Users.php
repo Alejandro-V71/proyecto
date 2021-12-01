@@ -37,7 +37,8 @@ class Users extends Component
     protected $paginationTheme = 'bootstrap';
     protected $rules = [
         'estado' => 'required',
-        'email' => 'required|unique:users|email|string',
+        'email' => 'required|unique:users,email|email|string',
+        'name' => 'required|unique:users,name|string|max:50'
 
 
     ];
@@ -84,7 +85,7 @@ class Users extends Component
 
         $user =  User::create([
 
-            'name' => Str::random(8),
+            'name' => $this->name,
             'email' => $this->email,
             'password' =>  Hash::make($contrasena),
             'rol' => $this->rol,

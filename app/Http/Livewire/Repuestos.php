@@ -6,9 +6,6 @@ use App\Models\Repuesto;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
-
-
 class Repuestos extends Component
 {
 
@@ -28,13 +25,10 @@ class Repuestos extends Component
 
     protected $paginationTheme = 'bootstrap';
     protected $rules = [
-        'nombreRepuestos' => 'required',
-        'descripcionRepuestos' => 'required|string|max:500',
-        'precioRepuestos' => 'required',
-
+        'nombreRepuestos' => 'required|string|max:20|unique:repuestos,nombreRepuesto',
+        'descripcionRepuestos' => 'required|string|max:250',
+        'precioRepuestos' => 'required|integer',
     ];
-
-
 
     public function render()
     {

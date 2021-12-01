@@ -11,35 +11,68 @@ use App\Models\User;
 use App\Models\Servicio;
 use App\Models\Repuesto;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
 
 class SolicitudServicios extends Component
 {
-    public $solicitudes, $horaSolcitudServicio,
+    public
+    $solicitudes, $horaSolcitudServicio,
     $fechaSolicitudServicio, $descripcionProblema,
-    $id_solicitud, $title, $Start, $End, $detalles;
-    public $user_id, $detalle;
-    public $id_detalles, $diagnostico, $solicitud_servicio_id, $servicio_id;
+    $id_solicitud, $title, $Start, $End, $detalles,
+    $user_id, $detalle, $detalleSolicitud,$detalleRepuesto,
+   $id_detalles, $diagnostico, $solicitud_servicio_id, $servicio_id,
+   $idRepuesto,$neumatico;
+
+   use WithPagination;
+
+   public $search = "";
+
     protected $paginationTheme = 'bootstrap';
+
+    protected $listeners = ['eliminarSolicitud','updateSolicitud',
+    'actualizarDetalle','eliminarDetalle','storeDetalle'];
 
     protected $rules = [
         'user_id' => 'required',
-        'horaSolcitudServicio' => 'required',
-        'fechaSolicitudServicio' => 'required|date',
-        'descripcionProblema' => 'required|min:10',
-        'title' => 'required|min:5',
-        'Start' => 'required|date',
-        'End' => 'required|date',
+        'horaSolcitudServicio' => 'required|unique:solicitud_servicios,horaSolcitudServicio',
+        'descripcionProblema' => 'required|string|min:10|max:500',
+        'title' => 'required|string|min:5|max:30|unique:solicitud_servicios,title',
+        'Start' => 'required|date|after_or_equal:yesterday',
+        'End' => 'required|date|after_or_equal:Start',
     ];
 
-    protected $reglas = [
-        'diagnostico' => 'required|min:10',
-        'solicitud_servicio_id' => 'required',
-        'servicio_id' => 'required',
+    protected $messages = [
+        'user_id.required' => 'El campo usuario es obligatorio',
+        'horaSolcitudServicio.required' => 'El campo hora solicitud servicio es obligatorio',
+        'descripcionProblema.required' => 'El campo descripcion problema es obligatorio',
+        'descripcionProblema.min' => 'El campo descripcion debe tener mínimo 10 caracteres',
+        'title.required' => 'El campo título es obligatorio',
+        'title.min' => 'El campo título deben tener mínimo 5 caracteres',
+        'Start.required' => 'El campo comienzo es obligatorio y es únicamente de tipo fecha',
+        'Start.after_or_equal' => 'El campo comienzo debe ser posterior o igual a hoy',
+        'End.required' => 'El campo fin es obligatorio y es únicamente de tipo fecha',
+    ];
+
+    protected $validationAttributes = [
+        'user_id' => 'Usuario',
+        'horaSolcitudServicio' => 'Hora solicitud',
+        'descripcionProblema' => 'descripcion',
+        'title' => 'titulo',
+        'Start' => 'comienzo',
+        'End' => 'fin',
     ];
 
     public function updated($propertyName){
-        $this->validateOnly($propertyName);
+        $this->validateOnly($propertyName,[
+        'user_id' => 'required',
+        'horaSolcitudServicio' => 'required|unique:solicitud_servicios,horaSolcitudServicio',
+        'descripcionProblema' => 'required|string|min:10|max:500',
+        'title' => 'required|string|min:5|max:30|unique:solicitud_servicios,title',
+        'Start' => 'required|date|after_or_equal:yesterday',
+        'End' => 'required|date|after_or_equal:Start',
+        ]);
     }
 
     public function save(){
@@ -49,33 +82,75 @@ class SolicitudServicios extends Component
 
     public function render()
     {
-        $this->solicitudes= SolicitudServicio::all();
-        $this->detalles = DetalleSolicitud::all();
-        $this->detalle = DetalleSolicitud::all();
-        return view('livewire.solicitudes.solicitud-servicios', [
-            'users' => User::all(),
+        if(Auth::user()->rol == 'Cliente'){
+            $consulta1 = SolicitudServicio::where('user_id',Auth::user()->id)->get();
+            $this->solicitudes = $consulta1;
+           // $this->detalle = DetalleSolicitud::where('solicitud_servicio_id',Auth::user()->solicitudServicio)->get();
+
+           return view('livewire.solicitudes.solicitud-servicios', [
+               'users' => User::where('id',Auth::user()->id)->get(),
+               'servicios' => Servicio::all(),
+               'repuestos' => Repuesto::all(),
+           ]);
+        }else{
+            $this->solicitudes = SolicitudServicio::all();
+            $this->detalles = DetalleSolicitud::all();
+            //Detalle para cada solicitud
+            $this->detalle = DetalleSolicitud::all();
+            return view('livewire.solicitudes.solicitud-servicios', [
+                'users' => User::all(),
+                'servicios' => Servicio::all(),
+                'repuestos' => Repuesto::all(),
+            ]);
+        }
+
+
+    }
+
+    public function Detalle($id)
+    {
+        $this->detalleSolicitud = DetalleSolicitud::where('solicitud_servicio_id',$id)->get();
+        return view('livewire.detalle-solicitud.detalleModal', [
             'solicitudes' => SolicitudServicio::all(),
-            'servicios' => Servicio::all()
+            'servicios' => Servicio::all(),
+            'repuestos' => Repuesto::all(),
         ]);
     }
 
     public function storeDetalle(){
         $this->exampleMode = true;
-        try{
-           DetalleSolicitud::updateOrCreate(['id'=>$this->id_detalles],
+        $validatedData = $this->validate(
+
+            ['diagnostico' => 'required|string|min:10|max:500',
+            'solicitud_servicio_id' => 'required',
+            'servicio_id' => 'required',],
+            [
+                'diagnostico.required' => 'El campo diagnostico es obligatorio',
+                'diagnostico.min' => 'El campo diagnostico debe tener mínimo 10 caracteres',
+                'solicitud_servicio_id.required' => 'El campo solicitud servicio es obligatorio',
+                'servicio_id.required' => 'El campo servicio es obligatorio',
+            ],
+
+            ['diagnostico' => 'diagnostico',
+            'solicitud_servicio_id' => 'solicitud_servicio_id',
+            'servicio_id' => 'servicio_id',
+            ]
+
+    );
+        $algo= DetalleSolicitud::updateOrCreate(['id'=>$this->id_detalles],
         [
             'diagnostico' => $this->diagnostico,
             'solicitud_servicio_id'=> $this->solicitud_servicio_id,
             'servicio_id'=>$this->servicio_id,
+
         ]);
 
+        $idDetalle=$this->id_detalles;
+        $algo->repuestos()->attach($this->idRepuesto);
+
         $this->limpiar();
-
-        $this->emit('userGuardar'); // Close model to using to jquery
-        } catch(Exception $e){
-            return $e;
-       }
-
+        $this->exampleMode = false; // Close model to using to jquery
+        $this->emit('Detalle');
 
     }
 
@@ -92,13 +167,14 @@ class SolicitudServicios extends Component
 
 
 
-    public function updateDetalle()
+    public function actualizarDetalle()
     {
-        $solicitudes = $this->validate([
-            'diagnostico' => 'required|min:10',
+        $detalles = $this->validate([
+            'diagnostico' => 'required|string|min:10|max:500',
             'solicitud_servicio_id' => 'required',
             'servicio_id' => 'required',
         ]);
+
         if ($this->id_detalles) {
             $detalles = DetalleSolicitud::find($this->id_detalles);
             $detalles->update([
@@ -106,6 +182,8 @@ class SolicitudServicios extends Component
                 'solicitud_servicio_id' => $this->solicitud_servicio_id,
                 'servicio_id' => $this->servicio_id,
             ]);
+            //updateExistingPivot
+            $detalles->repuestos()->sync($this->idRepuesto);
             $this->updateMode = false;
             $this->limpiar();
 
@@ -113,12 +191,9 @@ class SolicitudServicios extends Component
 
     }
 
-    public function deleteDetalle($id)
+    public function eliminarDetalle(DetalleSolicitud $id)
     {
-        if($id){
-            DetalleSolicitud::where('id',$id)->delete();
-            session()->flash('message', 'Servicio eliminado correctamente');
-        }
+        $id->delete();
     }
 
     public function limpiar(){
@@ -126,26 +201,22 @@ class SolicitudServicios extends Component
         $this->fechaSolicitudServicio='';
     }
 
-    public function store(){
-        $this->exampleMode = true;
+    public function storeSolicitud(){
         SolicitudServicio::updateOrCreate(['id'=>$this->id_solicitud],
         [
             'user_id' => $this->user_id,
             'horaSolcitudServicio' => $this->horaSolcitudServicio,
-            'fechaSolicitudServicio' => $this->fechaSolicitudServicio,
             'descripcionProblema' => $this->descripcionProblema,
             'title' => $this->title,
             'Start' => $this->Start,
             'End' => $this->End,
         ]);
 
-        session()->flash('message', 'Solicitud de servicio creada correctamente');
-
         $this->limpiar();
-
-        $this->emit('userGuardar'); // Close model to using to jquery
+        $this->emit('solicitud');
 
     }
+
     public function editar($id)
     {
         $this->updateMode = true;
@@ -153,7 +224,6 @@ class SolicitudServicios extends Component
         $this->id_solicitud = $id;
         $this->user_id = $solicitudes->user_id;
         $this->horaSolcitudServicio = $solicitudes->horaSolcitudServicio;
-        $this->fechaSolicitudServicio = $solicitudes->fechaSolicitudServicio;
         $this->descripcionProblema = $solicitudes->descripcionProblema;
         $this->title = $solicitudes->title;
         $this->Start = $solicitudes->Start;
@@ -166,38 +236,33 @@ class SolicitudServicios extends Component
         $this->limpiar();
     }
 
-    public function update()
+    public function updateSolicitud()
     {
         $solicitudes = $this->validate([
-            'horaSolcitudServicio' => 'required',
-            'fechaSolicitudServicio' => 'required|date',
-            'descripcionProblema' => 'required|min:10',
-            'title' => 'required|min:5',
-            'Start' => 'required|date',
-            'End' => 'required|date',
+            'user_id' => 'required',
+        'horaSolcitudServicio' => 'required|unique:solicitud_servicios,horaSolcitudServicio',
+        'descripcionProblema' => 'required|string|min:10|max:500',
+        'title' => 'required|string|min:5|max:30|unique:solicitud_servicios,title',
+        'Start' => 'required|date|after_or_equal:yesterday',
+        'End' => 'required|date|after_or_equal:Start',
         ]);
 
         if ($this->id_solicitud) {
             $solicitudes = SolicitudServicio::find($this->id_solicitud);
             $solicitudes->update([
                 'horaSolcitudServicio' => $this->horaSolcitudServicio,
-                'fechaSolicitudServicio' => $this->fechaSolicitudServicio,
                 'descripcionProblema' => $this->descripcionProblema,
                 'title' => $this->title,
                 'Start' => $this->Start,
                 'End' => $this->End,
             ]);
-            $this->updateMode = false;
-            session()->flash('message', 'Solicitud actualizada correctamente');
             $this->limpiar();
+            $this->updateMode = false;
         }
     }
 
-    public function delete($id)
+    public function eliminarSolicitud(SolicitudServicio $id)
     {
-        if($id){
-            SolicitudServicio::where('id',$id)->delete();
-            session()->flash('message', 'Solicitud eliminada correctamente');
-        }
+        $id->delete();
     }
 }

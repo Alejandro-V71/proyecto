@@ -1,52 +1,70 @@
 <div>
-    @include('livewire.solicitudes.createSolicitud')
-    @include('livewire.solicitudes.updateSolicitud')
     @include('livewire.detalle-solicitud.detalleModal')
     @include('livewire.detalle-solicitud.detalle')
-    <div class="py-12">
-        <button type="submit" wire:click="" data-toggle="collapse" href="#mostrarDetalles" class="btn btn-primary btn-sm">Detalles</button>
-        <div class="max-w-7x1 mx-auto sm:px6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                @if (session()->has('message'))
-                <div class="alert alert-info" style="margin-top:30px;">
-                  {{ session('message') }}
+
+    <div class="container" id="table">
+
+    @include('livewire.solicitudes.createSolicitud')
+    @include('livewire.solicitudes.updateSolicitud')
+
+    <div class="row mt-6">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+            <div class="card-header border-0">
+                <div class="float-left mr-2  mb-2 w-100" >
+                   
+
                 </div>
-            @endif
-                <table class="table table-bordered mt-5 table table-hover text-center">
-                    <thead class="table-primary">
-                        <tr class="bg-indigo-600 text-dark">
-                            <th class="px-4 py-2">Id</th>
-                            <th class="px-4 py-2">Usuario</th>
-                            <th class="px-4 py-2">Títuto</th>
-                            <th class="px-4 py-2">Comienzo</th>
-                            <th class="px-4 py-2">Fin</th>
-                            <th class="px-4 py-2">Hora solicitud de servicio</th>
-                            <th class="px-4 py-2">Fecha solicitud de servicio</th>
-                            <th class="px-4 py-2">Descripción problema</th>
-                            <th class="px-4 py-2">Acciones</th>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearSolicitud" >
+                    Nuevo
+                </button>
+              <h3 class="mb-0 mt-3">Solicitud de servicio</h3>
+            </div>
+
+                <!-- Light table -->
+            <div class="table-responsive">
+
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                      <tr>
+                            <th scope="col" class="sort" data-sort="name">#</th>
+                            <th scope="col" class="sort" data-sort="name">Usuario</th>
+                            <th scope="col" class="sort" data-sort="name">Títuto</th>
+                            <th scope="col" class="sort" data-sort="name">Comienzo</th>
+                            <th scope="col" class="sort" data-sort="name">Fin</th>
+                            <th scope="col" class="sort" data-sort="name">Hora solicitud de servicio</th>
+                            <th scope="col" class="sort" data-sort="name">Descripción problema</th>
+                            <th scope="col" class="sort" data-sort="name">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                 @foreach ($solicitudes as $value)
                     <tr>
-                        <td class="border px-4 py-2">{{$value->id}}</td>
-                        <td class="border px-4 py-2">{{$value->user->name}}</td>
-                        <td class="border px-4 py-2">{{$value->title}}</td>
-                        <td class="border px-4 py-2">{{$value->Start}}</td>
-                        <td class="border px-4 py-2">{{$value->End}}</td>
-                        <td class="border px-4 py-2">{{$value->horaSolcitudServicio}}</td>
-                        <td class="border px-4 py-2">{{$value->fechaSolicitudServicio}}</td>
-                        <td class="border px-4 py-2">{{$value->descripcionProblema}}</td>
-                        <td>
-                            <button type="submit" wire:click="editar({{ $value->id }})"  data-toggle="modal" data-target="#updateModal" class="btn btn-primary btn-sm">Editar</button>
-                            <button type="submit" wire:click="delete({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
-                            <button type="submit"  wire:click="render({{ $value->id }})" data-toggle="modal" data-target="#detalleModal" class="btn btn-primary btn-sm">Detalles</button>
+                        <td class="budget">{{$value->id}}</td>
+                        <td class="budget">{{$value->user->name}}</td>
+                        <td class="budget">{{$value->title}}</td>
+                        <td class="budget">{{$value->Start}}</td>
+                        <td class="budget">{{$value->End}}</td>
+                        <td class="budget">{{$value->horaSolcitudServicio}}</td>
+                        <td class="budget">{{$value->descripcionProblema}}</td>
+                        <td  class="budget">
+                            <button type="submit" wire:click="editar({{ $value->id }})"  data-toggle="modal" data-target="#updateModal" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                            <button type="submit" wire:click="$emit('deleteSolicitud', {{ $value->id }})" class="btn btn-danger btn-sm" id="eliminar" ><i class="far fa-trash-alt"></i></button>
+                            <button type="submit" wire:click="Detalle({{ $value->id }})" data-toggle="modal" data-target="#detalleModal" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i></button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-            </div>
-        </div>
     </div>
+    <!-- Card footer -->
+    <div>
+      <!--{$users->links()}}-->
     </div>
+
+  </div>
+  </div>
+  </div>
+    </div>
+  </div>

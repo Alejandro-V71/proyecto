@@ -6,6 +6,7 @@ use App\Models\ReporteEstado;
 use Livewire\Component;
 
 
+
 use Barryvdh\DomPDF\Facade as PDF;
 
 class ReporteEstadoController extends Component
@@ -22,6 +23,6 @@ class ReporteEstadoController extends Component
     public function PDF($diagnostico){
         $reportes = ReporteEstado::where('diagnostico', '=' , $diagnostico)->get();
         $pdf = PDF::loadView('prueba',compact('reportes'));
-        return $pdf->stream('invoice.pdf');
+        return $pdf->setPaper('A3','portrait')->stream('invoice.pdf');
     }
 }

@@ -13,7 +13,6 @@ class SolicitudServicio extends Model
 
         'title',
         'horaSolcitudServicio',
-        'fechaSolicitudServicio',
         'user_id',
         'Start',
         'End',

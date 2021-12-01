@@ -66,22 +66,13 @@
 
                 @endswitch
 
-
-
-
-
-
             </td>
 
             <td class="budget">
-             {{$user->getRoleNames()}}
+             {{$user->getRoleNames()[0]}}
             </td>
             <td class="budget">
                 <button data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $user->id }})" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
-
-
-
-
 
                 </td>
           </tr>

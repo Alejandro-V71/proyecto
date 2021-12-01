@@ -8,15 +8,36 @@ use App\Models\TipoDeServicio;
 
 class Servicios extends Component
 {
-    public $servicios, $id_servicios, $estadoServicio, $nombreServicio, $precioTotal, $tipo_de_servicio_id;
+    public $servicios, $id_servicios, $estadoServicio, $nombreServicio, $precioTotal, $tipo_de_servicio_id
+    ,$search;
 
+    protected $listeners = ['eliminarServicio','updateServicio','storeServicio'];
 
     protected $rules = [
-        'estadoServicio' => 'required|min:5',
-        'nombreServicio' => 'required|min:5',
-        'precioTotal' => 'required',
+        'estadoServicio' => 'required|string|min:5|max:100',
+        'nombreServicio' => 'required|string|min:5|max:30|unique:servicios,nombreServicio',
+        'precioTotal' => 'required|integer',
         'tipo_de_servicio_id' => 'required',
     ];
+
+    protected $messages = [
+        'estadoServicio.required' => 'El campo estado servicio es obligatorio',
+        'estadoServicio.min' => 'El campo estado servicio debe tener mínimo 5 caracteres',
+        'nombreServicio.required' => 'El campo nombre servicio es obligatorio',
+        'nombreServicio.min' => 'El campo nombre servicio debe tener mínimo 5 caracteres',
+        'precioTotal.required' => 'El campo precio total es obligatorio',
+        'tipo_de_servicio_id.required' => 'El campo tipo de servicio es obligatorio',
+    ];
+
+    protected $validationAttributes = [
+        'estadoServicio' => 'estado servicio',
+        'nombreServicio' => 'nombre servicio',
+        'precioTotal' => 'precio total',
+        'tipo_de_servicio_id' => 'tipo de servicio id',
+    ];
+
+    public $updateMode= false;
+
 
     public function updated($propertyName){
         $this->validateOnly($propertyName);
@@ -40,18 +61,17 @@ class Servicios extends Component
         ]);
     }
 
-    public function guardar(){
-        $this->exampleMode = true;
-        Servicio::updateOrCreate(['id'=>$this->id_servicios],
-        [
+    public function storeServicio(){
+
+        Servicio::create([
             'estadoServicio' => $this->estadoServicio,
             'nombreServicio' => $this->nombreServicio,
             'precioTotal' => $this->precioTotal,
             'tipo_de_servicio_id' => $this->tipo_de_servicio_id,
         ]);
 
-        $this->emit('userGuardar'); // Close model to using to jquery
-
+        $this->limpiar();
+        $this->exampleMode = false;
     }
 
     public function editarr($id)
@@ -69,16 +89,14 @@ class Servicios extends Component
     {
         $this->updateMode = false;
         $this->limpiar();
-
     }
 
-
-    public function updatee()
+    public function updateServicio()
     {
         $user = $this->validate([
-            'estadoServicio' => 'required|min:5',
-            'nombreServicio' => 'required|min:5',
-            'precioTotal' => 'required',
+            'estadoServicio' => 'required|string|min:5|max:100',
+            'nombreServicio' => 'required|string|min:5|max:30|unique:servicios,nombreServicio',
+            'precioTotal' => 'required|integer',
             'tipo_de_servicio_id' => 'required',
         ]);
 
@@ -91,17 +109,12 @@ class Servicios extends Component
                 'tipo_de_servicio_id' => $this->tipo_de_servicio_id,
             ]);
             $this->updateMode = false;
-            session()->flash('message', 'Usuario actualizado correctamente');
             $this->limpiar();
-
         }
     }
 
-    public function deleteSer($id){
-        if($id){
-            Servicio::where('id',$id)->delete();
-            session()->flash('message', 'Servicio eliminado correctamente');
-        }
+    public function eliminarServicio(Servicio $servicio){
+       $servicio->delete();
     }
 
 }

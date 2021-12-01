@@ -8,32 +8,32 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <table class="table table-bordered mt-5 table table-hover text-center">
-                    <thead class="table-primary">
-                        <tr class="bg-indigo-600 text-dark">
-                            <th class="px-4 py-2">Id</th>
-                            <th class="px-4 py-2">Diagnostico</th>
-                            <th class="px-4 py-2">Solicitud de servicio</th>
-                            <th class="px-4 py-2">Servicio</th>
+             <!-- Light table -->
+             <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                          <tr>
+                              <th scope="col" class="sort" data-sort="name">#</th>
+                              <th scope="col" class="sort" data-sort="name">Diagnostico</th>
+                              <th scope="col" class="sort" data-sort="name">Solicitud de servicio</th>
+                              <th scope="col" class="sort" data-sort="name">Servicio</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        @if (is_array ($detalleSolicitud) || is_object($detalleSolicitud) )
+                        @foreach ($detalleSolicitud as $value)
+                        <tr>
+                            <td class="budget">{{$value->id}}</td>
+                            <td class="budget">{{$value->diagnostico}}</td>
+                            <td class="budget">{{$value->solicitudServicio->title}}</td>
+                            <td class="budget">{{$value->Servicio->nombreServicio}}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                @foreach ($detalle as $value)
-                    <tr>
-                        <td class="border px-4 py-2">{{$value->id}}</td>
-                        <td class="border px-4 py-2">{{$value->diagnostico}}</td>
-                        <td class="border px-4 py-2">{{$value->solicitud_servicio_id}}</td>
-                        <td class="border px-4 py-2">{{$value->servicio_id}}</td>
-                    </tr>
-                @endforeach
+                    @endforeach
+                        @endif
+
             </tbody>
-        </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" wire:click.prevent="updateDetalle()" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
-            </div>
+          </table>
+      </div>
        </div>
     </div>
 </div>

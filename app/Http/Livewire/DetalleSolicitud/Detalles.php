@@ -14,10 +14,12 @@ class Detalles extends Component
     public $solicitud_servicio_id, $servicio_id;
 
     protected $rules = [
-        'diagnostico' => 'required|min:5',
+        'diagnostico' => 'required|string|min:5|max:500',
         'solicitud_servicio_id' => 'required',
         'servicio_id' => 'required',
     ];
+
+    protected $listeners = ['eliminarDetalle'];
 
     public function updated($propertyName){
         $this->validateOnly($propertyName);
@@ -77,7 +79,7 @@ class Detalles extends Component
     public function update()
     {
         $user = $this->validate([
-            'diagnostico' => 'required|min:5',
+            'diagnostico' => 'required|string|min:5|max:500',
             'solicitud_servicio_id' => 'required',
             'servicio_id' => 'required',
         ]);
@@ -97,12 +99,13 @@ class Detalles extends Component
     }
 
 
-    public function delete($id)
+    public function eliminarDetalle(DetalleSolicitud $id)
     {
-        if($id){
+        /*if($id){
             DetalleSolicitud::where('id',$id)->delete();
             session()->flash('message', 'Servicio eliminado correctamente');
-        }
+        }*/
+        $id->delete();
     }
 
 }

@@ -48,8 +48,6 @@
 
                 <button wire:click="$emit('deleteRepuesto', {{ $repuesto->id }})" class="btn btn-danger btn-sm" id="eliminar" ><i class="far fa-trash-alt"></i></button>
 
-
-
                 </td>
           </tr>
           @endforeach

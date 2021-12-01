@@ -12,16 +12,25 @@
                 <form>
                     <div class="form-group">
                         <input type="hidden" wire:model="id_user">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-file-signature"></i></span>
+                            </div>
                         <input type="text" class="form-control   @error('name') is-invalid @enderror" wire:model="name">
                         @error('name') <span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput2">Email address</label>
+                        <label for="exampleFormControlInput2">Correo electrónico</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
+                            </div>
                         <input type="email" class="form-control  @error('email') is-invalid @enderror" wire:model="email">
                         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
-
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

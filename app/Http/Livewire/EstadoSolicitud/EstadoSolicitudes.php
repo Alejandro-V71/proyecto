@@ -12,6 +12,8 @@ class EstadoSolicitudes extends Component
     public $solEstados, $fechaIncio, $fechaFin,  $id_estadoSol;
     public $estado_id, $solicitud_id;
 
+    protected $listeners = ['EliminarEstado', 'actualizarEstado'];
+
     protected $rules = [
         'solicitud_id' => 'required',
         'estado_id' => 'required',
@@ -19,8 +21,29 @@ class EstadoSolicitudes extends Component
         'fechaFin' => 'required|date',
     ];
 
+    protected $messages = [
+        'solicitud_id.required' => 'El campo estado de solicitud es obligatorio',
+        'estado_id.required' => 'El campo estado es obligatorio',
+        'fechaIncio.required' => 'El campo fecha de inicio es obligatorio',
+        'fechaIncio.after_or_equal'=>'El campo fecha inicio debe ser posterior o igual a hoy',
+        'fechaFin.required' => 'El campo fecha fin es obligatorio',
+    ];
+
+    protected $validationAttributes = [
+        'estadoServicio' => 'estado servicio',
+        'nombreServicio' => 'nombre servicio',
+        'precioTotal' => 'precio total',
+        'tipo_de_servicio_id' => 'tipo de servicio id',
+    ];
+
     public function updated($propertyName){
-        $this->validateOnly($propertyName);
+        $this->validateOnly($propertyName,[
+            'solicitud_id' => 'required',
+            'estado_id' => 'required',
+            'fechaIncio' => 'required|date|after_or_equal:today',
+            'fechaFin' => 'required|date|after_or_equal:fechaIncio',
+        ]);
+
     }
 
     public function save(){
@@ -43,7 +66,6 @@ class EstadoSolicitudes extends Component
     }
 
     public function store(){
-        $this->exampleMode = true;
         estado_solicitud_servicio::updateOrCreate(['id'=>$this->id_estadoSol],
         [
             'solicitud_id'=>$this->solicitud_id,
@@ -52,16 +74,14 @@ class EstadoSolicitudes extends Component
             'fechaFin' => $this->fechaFin,
         ]);
 
-        session()->flash('message', 'Estado de solicitud creado correctamente');
+        
 
-        $this->limpiar();
-
-        $this->emit('userGuardar'); // Close model to using to jquery
 
     }
+
     public function editar($id)
     {
-        $this->updateMode = true;
+        $this->updateEstado = true;
         $solEstados = estado_solicitud_servicio::where('id',$id)->first();
         $this->solicitud_id = $solEstados->solicitud_id;
         $this->id_estadoSol = $id;
@@ -72,18 +92,19 @@ class EstadoSolicitudes extends Component
 
     public function cancel()
     {
-        $this->updateMode = false;
+        $this->crearEstado = false;
+        $this->updateEstado = false;
         $this->limpiar();
 
     }
 
-    public function update()
+    public function actualizarEstado()
     {
         $solEstados = $this->validate([
             'solicitud_id' => 'required',
             'estado_id' => 'required',
-            'fechaIncio' => 'required|date',
-            'fechaFin' => 'required|date',
+            'fechaIncio' => 'required|date|after_or_equal:today',
+            'fechaFin' => 'required|date|after_or_equal:fechaFin',
         ]);
 
         if ($this->id_estadoSol) {
@@ -94,18 +115,19 @@ class EstadoSolicitudes extends Component
                 'fechaIncio' => $this->fechaIncio,
                 'fechaFin' => $this->fechaFin,
             ]);
-            $this->updateMode = false;
-            session()->flash('message', 'Estado de solicitud actualizado correctamente');
+            $this->updateEstado = false;
+            //session()->flash('message', 'Estado de solicitud actualizado correctamente');
             $this->limpiar();
-
         }
     }
 
-    public function delete($id)
+    public function EliminarEstado( estado_solicitud_servicio $id)
     {
-        if($id){
+        /*if($id){
             estado_solicitud_servicio::where('id',$id)->delete();
-            session()->flash('message', 'Estado de solicitud eliminado correctamente');
-        }
+            //session()->flash('message', 'Estado de solicitud eliminado correctamente');
+            $this->emit('deleteEstado');
+        }*/
+        $id->delete();
     }
 }

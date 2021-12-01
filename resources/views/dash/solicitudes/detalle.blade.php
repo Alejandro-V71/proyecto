@@ -1,22 +1,59 @@
-@extends('adminlte::page')
+@extends('layouts.dash')
 
-@section('title', 'Dashboard')
+@section('contenido')
 
-@section('content_header')
-    <h1>Detalle de solicitudes</h1>
-@stop
-
-@section('content')
 @livewire('detalle-solicitud.detalles')
-@livewireStyles()
+
 @livewireScripts
+<script type="text/javascript">
+    Livewire.on('guardarD',()=>{
+        Swal.fire({
+        icon: 'success',
+        title: '¡Buen trabajo!',
+        text: `Detalle creado correctamente
 
-@stop
+        `,
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+        })
+    });
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+    Livewire.on('updateD',()=>{
+        Swal.fire({
+            title: '¿Quieres guardar los cambios?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Actualizar',
+            denyButtonText: `No guardar`,
+            }).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('Actualizado!', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('No se han realizado cambios', '', 'info')
+  }
+})
+    });
+
+    window.Livewire.on('deleteDetalle', id =>{
+        Swal.fire({
+  title: '¿Estas seguro?',
+  text: "¡No podrás revertir esto!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, borrar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Livewire.emit('eliminarDetalle', id)
+    Swal.fire(
+      '¡Eliminado!',
+      'Detalle eliminado correctamente',
+      'success'
+    )
+  }
+})
+    });
+
+</script>
+

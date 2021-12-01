@@ -31,6 +31,6 @@ class DetalleSolicitud extends Model
     //relacion muchos a muchos con repouesto
 
     public function repuestos(){
-        return $this->belongsToMany(Repuesto::class);
+        return $this->belongsToMany(Repuesto::class, 'detalle_solicitud_repuesto')->withTimestamps();
     }
 }

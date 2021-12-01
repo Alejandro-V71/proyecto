@@ -1,42 +1,61 @@
 <div id="mostrarDetalles">
-    @include('livewire.detalle-solicitud.createDetalles')
-    @include('livewire.detalle-solicitud.updateDetalles')
-    <div class="py-12">
-        <div class="max-w-7x1 mx-auto sm:px6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
-                @if (session()->has('message'))
-                <div class="alert alert-info" style="margin-top:30px;">
-                  {{ session('message') }}
-                </div>
-            @endif
 
-                <table class="table table-bordered mt-5 table table-hover text-center">
-                    <button type="submit" wire:click="storeDetalle()" data-toggle="modal" data-target="#storeDetalle" class="btn btn-primary btn-sm">Nuevo</button>
-                    <thead class="table-primary">
-                        <tr class="bg-indigo-600 text-dark">
-                            <th class="px-4 py-2">Id</th>
-                            <th class="px-4 py-2">Diagnostico</th>
-                            <th class="px-4 py-2">Solicitud de servicio</th>
-                            <th class="px-4 py-2">Servicio</th>
-                            <th class="px-4 py-2">Acciones</th>
+
+    @if (Auth::user()->rol ==='Cliente')
+        <div>
+        </div>
+
+    @else
+    @include('livewire.detalle-solicitud.updateDetalles')
+    @include('livewire.detalle-solicitud.createDetalles')
+    <div class="row mt-6" >
+        <div class="col">
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <div class="float-left mr-2  mb-2 w-100" >
+
+                </div>
+                <button type="submit" wire:click="storeDetalle()" data-toggle="modal" data-target="#storeDetalle" class="btn btn-primary btn-sm">Nuevo</button>
+              <h3 class="mb-0 mt-3">Detalle Solicitudes</h3>
+            </div>
+            <!-- Light table -->
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">#</th>
+                            <th scope="col" class="sort" data-sort="name">Diagnostico</th>
+                            <th scope="col" class="sort" data-sort="name">Solicitud de servicio</th>
+                            <th scope="col" class="sort" data-sort="name">Servicio</th>
+                            <th scope="col" class="sort" data-sort="name">Repuesto</th>
+                            <th scope="col" class="sort" data-sort="name">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                 @foreach ($detalles as $value)
                     <tr>
-                        <td class="border px-4 py-2">{{$value->id}}</td>
-                        <td class="border px-4 py-2">{{$value->diagnostico}}</td>
-                        <td class="border px-4 py-2">{{$value->solicitudServicio->title}}</td>
-                        <td class="border px-4 py-2">{{$value->servicio->nombreServicio}}</td>
-                        <td>
-                            <button type="submit" wire:click="show({{ $value->id }})" data-toggle="modal" data-target="#updateDetalle" class="btn btn-primary btn-sm">Editar</button>
-                            <button type="submit" wire:click="deleteDetalle({{ $value->id }})" class="btn btn-danger btn-sm" onclick="return confirm('¿Estas seguro de eliminar este registro?')">Eliminar</button>
+                        <td class="budget">{{$value->id}}</td>
+                        <td class="budget">{{$value->diagnostico}}</td>
+                        <td class="budget">{{$value->solicitudServicio->title}}</td>
+                        <td class="budget">{{$value->servicio->nombreServicio}}</td>
+                        <td class="budget">{{$value->repuestos->pluck("nombreRepuesto")}}</td>
+                        <td class="budget">
+                            <button type="submit" wire:click="show({{ $value->id }})" data-toggle="modal" data-target="#updateDetalle" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                            <button type="submit" wire:click="$emit('deleteDetalle', {{ $value->id }})" class="btn btn-danger btn-sm" id="eliminar" ><i class="far fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-            </div>
-        </div>
     </div>
-    </div>
+    @endif
+
+    <!-- Card footer -->
+
+
+
+
+
+  </div>

@@ -78,6 +78,7 @@
   <!-- Argon JS -->
   <script src="{{asset('argon/js/argon.js?v=1.2.0')}}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 
 
 </body>
