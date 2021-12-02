@@ -51,23 +51,24 @@
                 </tr>
                 <tr>
                   <td style="padding:30px;background-color:#ffffff;">
-                    <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em; color:#E75731;">Notificación de registro exitosa</h1>
-                    <p style="margin:0;">Tú o un usuario se han registrado correctamente en el sistema, por favor
-                        recuérde cambiar su contraseña y nombre de usuario al ingresar a la aplicación </p>
-                    <p >Tu nombre de usuario es : <span style="color:#E75731;">{{$email}}</span></p>
-                    <p>Tu contraseñan es : <span style="color:#E75731;">{{$clave}}</span></p>
+                    <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em; color:#E75731;">Confirmación de Solicitud</h1>
+                    <p style="margin:0;">Solicitud de servicio registrada correctamente, por favor recuerde llevar la motocicleta
+                    completamente lavada junto con la tarjeda de propiedad de la misma </p>
+                    <p >Titulo de solicitud : <span style="color:#E75731;">{{$titulo}}</span></p>
+                    <p >Hora : <span style="color:#E75731;">{{$hora}}</span></p>
+                    <p>Fecha : <span style="color:#E75731;">{{$fecha}}</span></p>
                   </td>
                 </tr>
-
 
 
 
                 <tr>
-                  <td style="padding:30px;text-align:center;font-size:12px;background-color:#404040;color:#cccccc;">
+                    <td style="padding:30px;text-align:center;font-size:12px;background-color:#404040;color:#cccccc;">
 
-                    <p style="margin:0;font-size:14px;line-height:20px;">&reg; Todos los derechos reservados</p>
-                  </td>
-                </tr>
+                      <p style="margin:0;font-size:14px;line-height:20px;">&reg; Todos los derechos reservados</p>
+                    </td>
+                  </tr>
+
               </table>
               <!--[if mso]>
               </td>

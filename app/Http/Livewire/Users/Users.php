@@ -88,7 +88,7 @@ class Users extends Component
             'name' => $this->name,
             'email' => $this->email,
             'password' =>  Hash::make($contrasena),
-            'rol' => $this->rol,
+            'usuarioRol' => $this->rol,
             'Estado' => $this->estado
         ]);
 

@@ -4,12 +4,14 @@
     <!-- Nav items -->
     <ul class="navbar-nav">
       <li class="nav-item">
+        @can('dash')
+        <a class="nav-link {{request()->is('dash') ? 'active' : ''}}" href="{{route('dash')}}">
 
-          <a class="nav-link {{request()->is('dash') ? 'active' : ''}}" href="{{route('dash')}}">
+            <i class="ni ni-tv-2 text-orange"></i>
+            <span class="nav-link-text">Inicio</span>
 
-          <i class="ni ni-tv-2 text-orange"></i>
-          <span class="nav-link-text">Inicio</span>
-          
+        @endcan
+
 
         </a>
       </li>
@@ -76,6 +78,16 @@
 
         </a>
       </li>
+
+      <li class="nav-item">
+
+        <a class="nav-link {{request()->is('dash/tecnico/cuenta') ? 'active' : ''}}" href="{{route('reporteCuenta')}}">
+          <i class="ni ni-archive-2 text-orange"></i>
+        <span class="nav-link-text">Cuenta</span>
+
+
+      </a>
+    </li>
     </ul>
     </ul>
   </div>

@@ -24,8 +24,8 @@
 
 
 
-                <a   href="{{ url('dash/tecnico/reporte/estado/'. $reporte->diagnostico)}}"  class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
-               
+                <a   href="{{ url('dash/tecnico/reporte/estado/'. $reporte->title)}}"  class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
+
                 </div>
               </div>
               @endforeach

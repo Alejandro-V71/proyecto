@@ -86,7 +86,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" wire:click.prevent="save()" wire:click.prevent="storeSolicitud()" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                    <button type="submit" wire:click.prevent="save()" wire:click.prevent="storeSolicitud()" class="btn btn-primary" wire:loading.attr="disabled" data-dismiss="modal">Guardar</button>
                 </div>
 
             </div>

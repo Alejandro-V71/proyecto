@@ -17,6 +17,7 @@
                               <th scope="col" class="sort" data-sort="name">Diagnostico</th>
                               <th scope="col" class="sort" data-sort="name">Solicitud de servicio</th>
                               <th scope="col" class="sort" data-sort="name">Servicio</th>
+                              <th scope="col" class="sort" data-sort="name">Repuestos</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -27,6 +28,7 @@
                             <td class="budget">{{$value->diagnostico}}</td>
                             <td class="budget">{{$value->solicitudServicio->title}}</td>
                             <td class="budget">{{$value->Servicio->nombreServicio}}</td>
+                            <td class="budget">{{$value->repuestos->pluck("nombreRepuesto")}}</td>
                         </tr>
                     @endforeach
                         @endif

@@ -25,7 +25,7 @@
                             <select wire:model="solicitud_id" class="form-control  @error('solicitud_id') is-invalid @enderror">
                                 <option value="">Solicitud</option>
                                 @foreach ($solicitudes as $solicitud)
-                                <option value="{{$solicitud->id}}">{{$solicitud->descripcionProblema}}</option>
+                                <option value="{{$solicitud->id}}">{{$solicitud->title}}</option>
                                 @endforeach
                             </select>
                             </div>

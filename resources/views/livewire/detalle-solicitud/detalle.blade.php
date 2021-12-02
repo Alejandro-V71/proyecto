@@ -1,7 +1,7 @@
 <div id="mostrarDetalles">
 
 
-    @if (Auth::user()->rol ==='Cliente')
+    @if (Auth::user()->usuarioRol === 1 )
         <div>
         </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Solicitudes;
 
+use App\Mail\NotificacionSolicitud;
 use App\Models\DetalleSolicitud;
 use Livewire\Component;
 use App\Models\SolicitudServicio;
@@ -11,7 +12,10 @@ use App\Models\User;
 use App\Models\Servicio;
 use App\Models\Repuesto;
 use Exception;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\WithPagination;
 use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
 
@@ -77,12 +81,24 @@ class SolicitudServicios extends Component
 
     public function save(){
         $validation =$this->validate();
+
         SolicitudServicio::create($validation);
+        if(Auth::user()->usuarioRol === 1 ){
+
+            Mail::to(Auth::user()->email)->send(new NotificacionSolicitud(
+                $this->title,
+              $this->horaSolcitudServicio,
+              $this->End
+           ));
+        }
+
+
+
     }
 
     public function render()
     {
-        if(Auth::user()->rol == 'Cliente'){
+        if(Auth::user()->usuarioRol === 1){
             $consulta1 = SolicitudServicio::where('user_id',Auth::user()->id)->get();
             $this->solicitudes = $consulta1;
            // $this->detalle = DetalleSolicitud::where('solicitud_servicio_id',Auth::user()->solicitudServicio)->get();
@@ -151,7 +167,6 @@ class SolicitudServicios extends Component
         $this->limpiar();
         $this->exampleMode = false; // Close model to using to jquery
         $this->emit('Detalle');
-
     }
 
 
@@ -212,8 +227,12 @@ class SolicitudServicios extends Component
             'End' => $this->End,
         ]);
 
+
         $this->limpiar();
-        $this->emit('solicitud');
+        //Mail::to($this->email)->send(new CredencialesUsuario($this->email,$contrasena));
+
+
+
 
     }
 
