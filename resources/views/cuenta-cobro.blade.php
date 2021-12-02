@@ -107,17 +107,33 @@
                 <tr >
 
                     <td >
-                        @foreach ( $reportes as  $reporte)
-                         <p class="text-secondary"> Repuestos: <span class="text-dark">{{$reporte->nombreRepuesto}}</span></p>
-                         <p class="text-secondary"> Precios: <span class="text-dark">{{$reporte->precioRepuesto}}</span></p>
-                         <p class="text-secondary"> Descripción: <span class="text-dark">{{$reporte->descripcionRepuesto}}</span></p>
+                        @foreach ( $rep as  $repuestos)
+                         <p class="text-secondary"> Repuesto: <span class="text-dark">{{$repuestos->Repuesto->nombreRepuesto }}</span></p>
+                         <p class="text-secondary"> Precio del Repuesto: <span class="text-dark">{{$repuestos->Repuesto->precioRepuesto}}</span></p>
+
+                            @php
+                                $precio[] = $repuestos->Repuesto->precioRepuesto;
+
+                                 $totalRepuestos= array_sum($precio);
+                                 $precioTotal = $reporte->precioTotal + $totalRepuestos;
+                            @endphp
+
+
+
+
+
+
                         @endforeach
+
+
+                    </td>
+
+                    <td>
+                        <p class="text-secondary"> Repuesto: <span class="text-dark">{{$precioTotal}}</span></p>
                     </td>
 
 
 
-
-                    
                 </tr>
 
             </tbody>

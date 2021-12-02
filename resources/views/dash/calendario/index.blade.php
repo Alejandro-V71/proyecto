@@ -33,36 +33,33 @@
                     <div class="form-group">
 
                         <label>Titulo</label>
-                        <input type="text" id="title" name="title"  class="form-control" >
+                        <input type="text" id="title" name="title"  class="form-control" disabled>
 
                     </div>
                     <div class="form-group">
 
                         <label>Hora de Solicitud</label>
-                        <input type="time" id="horaSolcitudServicio" name="horaSolcitudServicio"  class="form-control" >
+                        <input type="time" id="horaSolcitudServicio" name="horaSolcitudServicio"  class="form-control" disabled >
 
                     </div>
                     <div class="form-group">
                         <label>Fecha de creación</label>
-                        <input type="text" id="start" name="start"  class="form-control" >
+                        <input type="text" id="start" name="start"  class="form-control" disabled>
 
                     </div>
                     <div class="form-group">
                         <label>fecha De Solicitud</label>
-                     <input type="text" id="end" name="end" class="form-control">
+                     <input type="text" id="end" name="end" class="form-control" disabled>
 
                     </div>
                     <div class="form-group">
                         <label>Descripción del Problema</label>
-                       <textarea  id="descripcionProblema"  class="form-control"   name="descripcionProblema" cols="30" rows="10" ></textarea>
+                       <textarea  id="descripcionProblema"  class="form-control"   name="descripcionProblema" cols="30" rows="10" disabled></textarea>
                     </div>
 
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cerrar</button>
-                <button type="button"  id="btnGuardar" class="btn btn-primary close-modal">Registrar</button>
-            </div>
+        
         </div>
     </div>
 </div>

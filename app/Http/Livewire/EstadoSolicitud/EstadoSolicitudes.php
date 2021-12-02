@@ -10,7 +10,7 @@ use Livewire\Component;
 class EstadoSolicitudes extends Component
 {
     public $solEstados, $fechaIncio, $fechaFin,  $id_estadoSol;
-    public $estado_id, $solicitud_id;
+    public $estado_id, $solicitud_id,$search;
 
     protected $listeners = ['EliminarEstado', 'actualizarEstado'];
 
@@ -74,7 +74,7 @@ class EstadoSolicitudes extends Component
             'fechaFin' => $this->fechaFin,
         ]);
 
-        
+
 
 
     }

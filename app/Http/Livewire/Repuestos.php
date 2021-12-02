@@ -12,7 +12,6 @@ class Repuestos extends Component
     use WithPagination;
 
     protected $listeners = ['delete'];
-    public $search = "";
 
     public
            $nombreRepuestos,
@@ -34,8 +33,7 @@ class Repuestos extends Component
     {
        // $this->repuestos = Repuesto::
         return view('livewire.repuestos',[
-            'repuestos' =>Repuesto::where('nombreRepuesto','like','%' . $this->search. '%')
-            ->orWhere('descripcionRepuesto','like','%' . $this->search. '%')->paginate(10),
+            'repuestos' =>Repuesto::all(),
         ]);
     }
 

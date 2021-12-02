@@ -31,5 +31,5 @@ Route::get('dash/tecnico/reporte/estado/{problema}',[ReporteEstadoController::cl
 Route::get('dash/tecnico/cuenta', function(){
 
     return view('dash.reporte.index-cuenta');
-})->name('reporteCuenta');
-Route::get('dash/tecnico/cuenta/{problema}',[ReporteCuentaController::class ,'PDF']);
+})->middleware('can:dash.reporteCuenta.index')->name('reporteCuenta');
+Route::get('dash/tecnico/cuenta/{problema}/{id}',[ReporteCuentaController::class ,'PDF']);

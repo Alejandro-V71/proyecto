@@ -17,15 +17,12 @@
 
             <!-- Card header -->
             <div class="card-header border-0">
-                <div class="float-left mr-2  mb-2 w-100" >
-                    <input type="text" class="form-control" placeholder="Buscar" wire:model="search">
-                </div>
                 @include('livewire.create')
               <h3 class="mb-0">Repuestos</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush" id="Repuestos">
                 <thead class="thead-light">
           <tr>
             <th scope="col" class="sort" data-sort="name">#</th>
@@ -57,7 +54,6 @@
   </div>
   <!-- Card footer -->
   <div>
-    {{$repuestos->links()}}
   </div>
 
 </div>

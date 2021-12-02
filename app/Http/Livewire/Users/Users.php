@@ -20,9 +20,6 @@ class Users extends Component
 
     protected $listeners = ['store','cambiarEstado'];
 
-    public $search = "";
-
-
     public
            $name,
            $email,
@@ -43,15 +40,11 @@ class Users extends Component
 
     ];
 
-
-
     public function render()
     {
         $this->roles  = Role::all()->pluck('name','id');
         return view('livewire.users.users',[
-           'users' =>  User::where('name','like','%' . $this->search. '%')
-            ->orWhere('email','like','%' . $this->search. '%')
-            ->orWhere('Estado', $this->search)->paginate(6),
+           'users' =>  User::all(),
         ]);
     }
 

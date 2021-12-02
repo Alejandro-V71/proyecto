@@ -31,8 +31,6 @@ class SolicitudServicios extends Component
 
    use WithPagination;
 
-   public $search = "";
-
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners = ['eliminarSolicitud','updateSolicitud',
@@ -83,7 +81,7 @@ class SolicitudServicios extends Component
         $validation =$this->validate();
 
         SolicitudServicio::create($validation);
-        if(Auth::user()->usuarioRol === 1 ){
+        if(Auth::user()->UsuarioRol === 1 ){
 
             Mail::to(Auth::user()->email)->send(new NotificacionSolicitud(
                 $this->title,
@@ -98,9 +96,10 @@ class SolicitudServicios extends Component
 
     public function render()
     {
-        if(Auth::user()->usuarioRol === 1){
+        if(Auth::user()->UsuarioRol === 1){
             $consulta1 = SolicitudServicio::where('user_id',Auth::user()->id)->get();
             $this->solicitudes = $consulta1;
+
            // $this->detalle = DetalleSolicitud::where('solicitud_servicio_id',Auth::user()->solicitudServicio)->get();
 
            return view('livewire.solicitudes.solicitud-servicios', [
@@ -108,6 +107,7 @@ class SolicitudServicios extends Component
                'servicios' => Servicio::all(),
                'repuestos' => Repuesto::all(),
            ]);
+
         }else{
             $this->solicitudes = SolicitudServicio::all();
             $this->detalles = DetalleSolicitud::all();

@@ -3,8 +3,6 @@
     @include('livewire.detalle-solicitud.detalle')
 
     <div class="container" id="table">
-
-    @include('livewire.solicitudes.createSolicitud')
     @include('livewire.solicitudes.updateSolicitud')
 
     <div class="row mt-6">
@@ -13,8 +11,7 @@
                 <!-- Card header -->
             <div class="card-header border-0">
                 <div class="float-left mr-2  mb-2 w-100" >
-                   
-
+                    @include('livewire.solicitudes.createSolicitud')
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearSolicitud" >
                     Nuevo
@@ -25,7 +22,7 @@
                 <!-- Light table -->
             <div class="table-responsive">
 
-                <table class="table align-items-center table-flush">
+                <table class="table align-items-center table-flush" id="SolicitudServicio">
                   <thead class="thead-light">
                       <tr>
                             <th scope="col" class="sort" data-sort="name">#</th>

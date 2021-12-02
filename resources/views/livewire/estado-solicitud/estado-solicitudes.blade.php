@@ -3,24 +3,21 @@
     @include('livewire.estado-solicitud.updateSolEstado')
     <div class="row mt-6" >
 
-
         <div class="col">
           <div class="card">
 
-            
             <!-- Card header -->
             <div class="card-header border-0">
                 <div class="float-left mr-2  mb-2 w-100" >
-
-                    @include('livewire.estado-solicitud.createSolEstado')
-
+                 @include('livewire.estado-solicitud.createSolEstado')
                 </div>
-
                 <h3 class="mb-0 mt-3">Estado de solicitudes</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
-                <table class="table align-items-center table-flush">
+
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush" id="EstadoSolicitud">
                     <thead  class="thead-light">
                         <tr>
                             <th scope="col" class="sort" data-sort="name">#</th>

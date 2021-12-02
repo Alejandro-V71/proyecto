@@ -19,8 +19,8 @@ class CreateDetalleSolicitudRepuestoTable extends Migration
             $table->unsignedBigInteger("detalle_solicitud_id");
             $table->unsignedBigInteger("repuesto_id");
 
-            $table->foreign("detalle_solicitud_id")->references("id")->on("detalle_solicituds")->onDelete("cascade");
-            $table->foreign("repuesto_id")->references("id")->on("repuestos")->onDelete("cascade");
+            $table->foreign("detalle_solicitud_id")->references("id")->on("detalle_solicituds")->onDelete("cascade")->onUpdate('cascade');
+            $table->foreign("repuesto_id")->references("id")->on("repuestos")->onDelete("cascade")->onUpdate('cascade');
 
             $table->timestamps();
         });

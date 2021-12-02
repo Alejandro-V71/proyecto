@@ -23,7 +23,7 @@ class RoleSeeder extends Seeder
 
         //permisos de cliente
         $permission = Permission::create(['name' => 'dash'])->syncRoles([$role1,$role2,$role3]);
-        $permission = Permission::create(['name' => 'dash.usuario.index'])->syncRoles([$role1,$role2]);
+        $permission = Permission::create(['name' => 'dash.usuario.index'])->syncRoles([$role1]);
         $permission = Permission::create(['name' => 'dash.solicitudes.index'])->syncRoles([$role1,$role2,$role3]);
         $permission = Permission::create(['name' => 'dash.solicitudes.estado'])->syncRoles([$role1,$role2]);
         $permission = Permission::create(['name' => 'dash.solicitudes.detalle'])->syncRoles([$role1,$role2]);
@@ -31,7 +31,8 @@ class RoleSeeder extends Seeder
 
         $permission = Permission::create(['name' => 'dash.calendario.index'])->syncRoles([$role1,$role2]);
         $permission = Permission::create(['name' => 'dash.repuestos.index'])->syncRoles([$role1,$role2]);
-        $permission = Permission::create(['name' => 'dash.reporteEstado.index'])->syncRoles([$role1,$role2]);
+        $permission = Permission::create(['name' => 'dash.reporteEstado.index'])->syncRoles([$role1,$role2,$role3]);
+        $permission = Permission::create(['name' => 'dash.reporteCuenta.index'])->syncRoles([$role1,$role2,$role3]);
 
 
 

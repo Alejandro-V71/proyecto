@@ -1,13 +1,13 @@
 <div id="mostrarDetalles">
 
 
-    @if (Auth::user()->usuarioRol === 1 )
+    @if (Auth::user()->UsuarioRol === 1 )
         <div>
         </div>
 
     @else
     @include('livewire.detalle-solicitud.updateDetalles')
-    @include('livewire.detalle-solicitud.createDetalles')
+
     <div class="row mt-6" >
         <div class="col">
           <div class="card">
@@ -15,14 +15,16 @@
             <!-- Card header -->
             <div class="card-header border-0">
                 <div class="float-left mr-2  mb-2 w-100" >
-
+                    <div class="float-left mr-2  mb-2 w-100" >
+                        @include('livewire.detalle-solicitud.createDetalles')
+                    </div>
                 </div>
                 <button type="submit" wire:click="storeDetalle()" data-toggle="modal" data-target="#storeDetalle" class="btn btn-primary btn-sm">Nuevo</button>
               <h3 class="mb-0 mt-3">Detalle Solicitudes</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush" id="DetalleSolicitud">
                 <thead class="thead-light">
                         <tr>
                             <th scope="col" class="sort" data-sort="name">#</th>

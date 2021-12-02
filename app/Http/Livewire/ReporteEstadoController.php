@@ -8,6 +8,7 @@ use Livewire\Component;
 
 
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
 
 class ReporteEstadoController extends Component
 {
@@ -16,8 +17,14 @@ class ReporteEstadoController extends Component
 
     public function render()
     {
-        $this->reportes = ReporteEstado::all();
-        return view('livewire.reporte-estado-controller');
+        if(Auth::user()->UsuarioRol === 1 ){
+            $this->reportes = ReporteEstado::where('email',Auth::user()->email)->get();
+            return view('livewire.reporte-estado-controller');
+        }else{
+            $this->reportes = ReporteEstado::all();
+            return view('livewire.reporte-estado-controller');
+        }
+
     }
 
     public function PDF($diagnostico){

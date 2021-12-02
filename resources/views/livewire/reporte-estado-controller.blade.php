@@ -2,7 +2,7 @@
     {{-- Close your eyes. Count to one. That is how long forever feels. --}}
 
 
-        <div class="row d-flex">
+        <div class="row mt-5 d-flex">
 
             @foreach ($reportes as $reporte )
             <div class="card ml-2 mr-2" >

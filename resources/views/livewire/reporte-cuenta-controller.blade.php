@@ -1,5 +1,5 @@
 <div>
-    <div class="row d-flex">
+    <div class="row mt-5  d-flex">
 
         @foreach ($reportes as $reporte )
         <div class="card ml-2 mr-2" >
@@ -21,7 +21,8 @@
 
 
 
-            <a   href="{{ url('dash/tecnico/cuenta/'. $reporte->title)}}"  class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
+
+            <a   href="{{ url('dash/tecnico/cuenta/'. $reporte->title . '/' . $reporte->detalle_solicitud_id)}}"  class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
 
             </div>
           </div>

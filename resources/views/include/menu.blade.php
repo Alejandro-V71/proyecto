@@ -80,10 +80,12 @@
       </li>
 
       <li class="nav-item">
-
+        @can('dash.reporteCuenta.index')
         <a class="nav-link {{request()->is('dash/tecnico/cuenta') ? 'active' : ''}}" href="{{route('reporteCuenta')}}">
           <i class="ni ni-archive-2 text-orange"></i>
         <span class="nav-link-text">Cuenta</span>
+
+        @endcan
 
 
       </a>

@@ -14,8 +14,6 @@
 
 @endsection
 
-
-
 @livewireScripts
 
 <script>
@@ -77,6 +75,29 @@
     //alerta de cambio de estado(confirmación)
 
 });
-
 </script>
+
+@section('js')
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#Users').DataTable({
+        "lengthMenu": [[5,10,25,-1], [5,10,25, "Todos"]],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registro por página",
+            "zeroRecords": "Ningún registro coincide - ¡Lo sentimos!",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(Filtrado entre _MAX_ registros totales)",
+            'search': 'Buscar:',
+            'paginate': {
+                'next': 'Siguiente',
+                'previous': 'Anterior'
+            }
+        }
+    });
+} );
+</script>
+@endsection
 

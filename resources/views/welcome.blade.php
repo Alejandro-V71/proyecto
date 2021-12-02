@@ -36,12 +36,12 @@
                         @if (Route::has('login'))
 
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                        <a href="{{ url('/login') }}" class="text-sm btn btn-danger">REGRESAR</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline" style="margin-top: 0.5%">Login</a>
+                        <a href="{{ route('login') }}" class="text-sm btn btn-danger">INICIAR</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline" style="margin-left: 1.5%; margin-top: 0.5%">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm btn btn-danger" style="margin-left: 1.5%;">REGISTRARSE</a>
                         @endif
                     @endauth
 
@@ -138,7 +138,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/calculos.jpg" alt="..." />
+                                <img class="img-fluid" src="{{asset('home/assets/img/portfolio/calculos.jpg')}}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Cálculos automáticos</div>
@@ -153,7 +153,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/usuarios.jpg" alt="..." />
+                                <img class="img-fluid" src="{{asset('home/assets/img/portfolio/usuarios.jpg')}}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Gestión de usuarios</div>
@@ -168,7 +168,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/solicitud.jpg"  alt="..." />
+                                <img class="img-fluid" src="{{asset('home/assets/img/portfolio/solicitud.jpg')}}"  alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Solicitudes de servicio</div>
@@ -183,7 +183,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/cuentasc.jpg"  alt="..." />
+                                <img class="img-fluid" src="{{asset('home/assets/img/portfolio/cuentasc.jpg')}}"  alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Generar cuentas de cobro</div>
@@ -198,7 +198,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/repuestos.jpg"  alt="..." />
+                                <img class="img-fluid" src="{{asset('home/assets/img/portfolio/repuestos.jpg')}}"  alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Repuestos</div>
@@ -218,7 +218,7 @@
                 </div>
                 <ul class="timeline">
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="assets/img/citas.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="{{asset('home/assets/img/citas.jpg')}}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4 class="subheading">Reserva de citas </h4>
@@ -227,7 +227,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="assets/img/cronograma.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="{{asset('home/assets/img/cronograma.jpg')}}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4 class="subheading">Planeación en los cronogramas</h4>
@@ -236,7 +236,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="assets/img/cobro.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="{{asset('home/assets/img/cobro.jpg')}}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4 class="subheading">Producción de cuentas de cobro</h4>
@@ -245,7 +245,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="assets/img/reporte.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluide" src="{{asset('home/assets/img/reporte.jpg')}}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4 class="subheading">Generación de reportes e informes</h4>
@@ -266,7 +266,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-3">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{asset('home/assets/img/team/3.jpg')}}" alt="..." />
                             <h4>Samuel Casallas</h4>
                             <p class="text-muted">Desarrollador front-end</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -276,7 +276,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{asset('home/assets/img/team/3.jpg')}}" alt="..." />
                             <h4>Diego Montenegro</h4>
                             <p class="text-muted">Desarrollador back-end</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -287,7 +287,7 @@
 
                     <div class="col-md-3">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{asset('home/assets/img/team/3.jpg')}}" alt="..." />
                             <h4>Alejandro Villamil</h4>
                             <p class="text-muted">Analista y arquitecto de software</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -297,7 +297,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{asset('home/assets/img/team/3.jpg')}}" alt="..." />
                             <h4>Laura Rubiano</h4>
                             <p class="text-muted">Líder de grupo</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
@@ -338,7 +338,7 @@
                             </div>
                             <div class="form-group mb-md-0">
                                 <!-- Phone number input-->
-                                <input class="form-control" id="phone" type="tel" placeholder="Tú número de celular *" data-sb-validations="required" />
+                                <input class="form-control" id="phone" type="number" placeholder="Tú número de celular *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="phone:required">Tú número de celular es requerido.</div>
                             </div>
                         </div>
@@ -356,17 +356,16 @@
                     <!-- has successfully submitted-->
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
+                            <div class="fw-bolder">¡Su mensaje se ha enviado exitosamente!</div>
+                            Gracias por confíar en nosotros
                             <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
+                         </div>
                     </div>
                     <!-- Submit error message-->
                     <!---->
                     <!-- This is what your users will see when there is-->
                     <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error, tu mensaje no se ha podido enviar.</div></div>
                     <!-- Submit Button-->
                     <div class="text-center"><button class="btn btn-warning btn-xl text-uppercase disabled" id="submitButton" type="submit">Enviar mensaje</button></div>
                 </form>
@@ -377,13 +376,13 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <div class="col-lg-4 text-lg-start"><img src="assets/logotipo.ico" ></div>
+                        <div class="col-lg-4 text-lg-start"><img src="{{asset('home/assets/logotipo.ico')}}" ></div>
                     </div>
-                    <div class="col-lg-4 text-lg-end">
+                    <div class="col-lg-4 text-lg-end" style="margin-left: -5%">
                         <a class="link-dark text-decoration-none me-3" href="#!">Copyright &copy;</a>
-                        <a class="link-dark text-decoration-none text-center" href="#!">Motor Bikefix 2021</a>
+                        <a class="link-dark text-decoration-none text-center" href="#!">Motor BikeFix 2021</a>
                     </div>
-                    <div class="col-lg-4 text-lg-end">
+                    <div class="col-lg-4 text-lg-end" style="margin-left: 5%">
                         <a class="link-dark text-decoration-none me-3" href="#!">Todos los derechos reservados</a><br>
                     </div>
                 </div>

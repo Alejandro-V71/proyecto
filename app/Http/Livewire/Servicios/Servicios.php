@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Servicios;
 use Livewire\Component;
 use App\Models\Servicio;
 use App\Models\TipoDeServicio;
+use Livewire\WithPagination;
 
 class Servicios extends Component
 {
+    use WithPagination;
+
     public $servicios, $id_servicios, $estadoServicio, $nombreServicio, $precioTotal, $tipo_de_servicio_id
     ,$search;
 
@@ -54,7 +57,7 @@ class Servicios extends Component
 
     public function render()
     {
-        $this->servicios= Servicio::all();
+    $this->servicios= Servicio::all();
         return view('livewire.servicios.servicios', [
         'servicios' => Servicio::all(),
         'tiServicios' => TipoDeServicio::all()
