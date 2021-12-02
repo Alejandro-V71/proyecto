@@ -9,6 +9,8 @@ class Marca extends Model
 {
     use HasFactory;
 
+
+lable = []]''nombreMarca;protected $filla
     //relacion muchos a uno con la tabla lineas
     public function lineas(){
 

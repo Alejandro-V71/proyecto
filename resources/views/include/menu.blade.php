@@ -25,6 +25,15 @@
         </a>
       </li>
       <li class="nav-item">
+          <!-- @can('dash.solicitudes.index') -->
+          <a class="nav-link {{request()->is('dash/cliente/motocicletas') ? 'active' : ''}}" href="{{route('motocicletas')}}">
+            <i class="ni ni-bulb-61 text-orange"></i>
+            <span class="nav-link-text">Motocicleta</span>
+          <!-- @endcan -->
+
+        </a>
+      </li>
+      <li class="nav-item">
           @can('dash.solicitudes.index')
           <a class="nav-link {{request()->is('dash/asesor/solicitudes') ? 'active' : ''}}" href="{{route('solicitudes')}}">
             <i class="ni ni-bulb-61 text-orange"></i>

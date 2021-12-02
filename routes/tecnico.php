@@ -33,3 +33,8 @@ Route::get('dash/tecnico/cuenta', function(){
     return view('dash.reporte.index-cuenta');
 })->middleware('can:dash.reporteCuenta.index')->name('reporteCuenta');
 Route::get('dash/tecnico/cuenta/{problema}/{id}',[ReporteCuentaController::class ,'PDF']);
+
+Route::get('dash/cliente/motocicletas', function () {
+    // abort_if(Gate::denies('motocicleta_index'), 403);
+    return view('dash.motocicleta.index');
+})->name('motocicletas');
