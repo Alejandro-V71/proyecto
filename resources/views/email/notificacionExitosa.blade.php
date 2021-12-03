@@ -52,11 +52,23 @@
                 <tr>
                   <td style="padding:30px;background-color:#ffffff;">
                     <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em; color:#E75731;">Confirmación de Solicitud</h1>
-                    <p style="margin:0;">Solicitud de servicio registrada correctamente, por favor recuerde llevar la motocicleta
-                    completamente lavada junto con la tarjeda de propiedad de la misma </p>
+                    <p style="margin:0;">Tenga en cuenta lo siguiente: </p>
+                    <p>
+                        •	El cliente tiene la obligación de llevar la motocicleta lavada<br>
+                        •	El cliente debe proporcionar la tarjeta de propiedad de la motocicleta<br>
+                        •	No se da garantía si el cliente lleva la motocicleta a otro establecimiento donde se brinde los mismos servicios ya que pueden alterar el trabajo realizado en nuestro taller
+                        •	No se brinda garantía si el cliente trae repuestos genéricos ya que afecta la calidad del trabajo realizado<br>
+                        •	Al decidir a hacer el mantenimiento el cliente debe de pagar el 50% del costo total.<br>
+                        •	Expedir los reportes con datos que describan el proceso realizado durante el mantenimiento o reparación con información correcta y verídica. En caso de no ser así se realiza un fraude por parte de la empresa.<br>
+                        •	Todos los datos ingresados al sistema deben ser verdaderos y se confirmarán los datos correspondientes.<br>
+
+                    </p>
+                    <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em; color:#E75731;">Información de la solcitud</h1>
                     <p >Titulo de solicitud : <span style="color:#E75731;">{{$titulo}}</span></p>
                     <p >Hora : <span style="color:#E75731;">{{$hora}}</span></p>
                     <p>Fecha : <span style="color:#E75731;">{{$fecha}}</span></p>
+
+
                   </td>
                 </tr>
 

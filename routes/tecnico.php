@@ -47,4 +47,5 @@ Route::get('dash/tecnico/reporte/final/{problema}/{id}/{solicitud}',[ReporteFina
 Route::get('dash/cliente/motocicletas', function () {
     // abort_if(Gate::denies('motocicleta_index'), 403);
     return view('dash.motocicleta.index');
-})->name('motocicletas');
+})->middleware('can:dash.motocicleta.index')->name('motocicletas');
+

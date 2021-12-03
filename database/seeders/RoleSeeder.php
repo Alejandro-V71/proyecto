@@ -33,6 +33,7 @@ class RoleSeeder extends Seeder
         $permission = Permission::create(['name' => 'dash.repuestos.index'])->syncRoles([$role1,$role2]);
         $permission = Permission::create(['name' => 'dash.reporteEstado.index'])->syncRoles([$role1,$role2,$role3]);
         $permission = Permission::create(['name' => 'dash.reporteCuenta.index'])->syncRoles([$role1,$role2,$role3]);
+        $permission = Permission::create(['name' => 'dash.motocicleta.index'])->syncRoles([$role3]);
 
 
 

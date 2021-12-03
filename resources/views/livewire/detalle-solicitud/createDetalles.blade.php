@@ -56,22 +56,15 @@
 
                         <div>
                             <label>Repuestos</label>
-                            {{-- <select wire:model="idRepuesto" multiple class="form-control  @error('') is-invalid @enderror">
+                            <select wire:model="idRepuesto" multiple class="form-control  @error('') is-invalid @enderror">
                                 <option value="">Repuestos</option>
                                 @foreach ($repuestos as $value)
                                 <option value="{{$value->id}}">{{$value->nombreRepuesto}}</option>
                                 @endforeach
-                            </select> --}}
+                            </select>
 
 
-                                @foreach ($repuestos as $value)
-                                <div class="form-check">
-                                <input class="form-check-input @error('') is-invalid @enderror" wire:model="idRepuesto" type="checkbox"    value="{{$value->id}}" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    {{$value->nombreRepuesto}}
-                                </label>
-                            </div>
-                                @endforeach
+
 
                         </div>
                     </form>
