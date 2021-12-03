@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ReporteEstado extends Model
+class ReporteFinalM extends Model
 {
-    protected $table="reporteestado";
-    public $timestamps = false;
+    use HasFactory;
 
+
+    protected $table="reportefinal";
+    public $timestamps = false;
     protected $fillable = [
 
 
@@ -21,7 +23,6 @@ class ReporteEstado extends Model
         'nombreMarca',
         'name',
         'email',
-        'solicitud_id',
         'title',
         'horaSolicitudServicio',
         'descripcionProblema',
@@ -30,8 +31,10 @@ class ReporteEstado extends Model
         'diagnostico',
         'nombreServicio',
         'precioTotal',
-        'estado_id',
-        'detalle_solicitud_id'
+        'nombreRepuesto',
+        'descripcionRepuesto',
+        'precioRepuesto',
+
+
     ];
-    use HasFactory;
 }

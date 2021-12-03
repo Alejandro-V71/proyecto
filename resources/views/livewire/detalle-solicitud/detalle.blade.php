@@ -1,9 +1,8 @@
 <div id="mostrarDetalles">
 
 
-    @if (Auth::user()->UsuarioRol === 1 )
-        <div>
-        </div>
+    @if (Auth::user()->hasRole('Cliente') )
+       
 
     @else
     @include('livewire.detalle-solicitud.updateDetalles')

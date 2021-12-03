@@ -22,8 +22,8 @@ class CreateEstadoSolicitudServicioTable extends Migration
             $table->unsignedBigInteger("solicitud_id")->nullable();
             $table->unsignedBigInteger("estado_id")->nullable();
 
-            $table->foreign("solicitud_id")->references("id")->on("solicitud_servicios")->onDelete("cascade");
-            $table->foreign("estado_id")->references("id")->on("estados")->onDelete("cascade");
+            $table->foreign("solicitud_id")->references("id")->on("solicitud_servicios")->onDelete("cascade")->onUpdate('cascade');
+            $table->foreign("estado_id")->references("id")->on("estados")->onDelete("cascade")->onUpdate('cascade');
 
 
 

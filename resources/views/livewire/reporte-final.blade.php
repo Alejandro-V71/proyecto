@@ -1,4 +1,5 @@
 <div>
+    {{-- Because she competes with no one, no one can compete with her. --}}
     <div class="row mt-5  d-flex">
 
         @foreach ($reportes as $reporte )
@@ -22,7 +23,8 @@
 
 
 
-            <a   href="{{ url('dash/tecnico/cuenta/'. $reporte->title . '/' . $reporte->detalle_solicitud_id . '/' . $reporte->estado_id)}}"  class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
+            <a   href="{{ url('dash/tecnico/reporte/final/'. $reporte->title . '/' . $reporte->detalle_solicitud_id . '/' . $reporte->solicitud_id)}}"
+              class="btn btn-danger btn-sm" >Generar Reporte <i class="far fa-file-pdf ml-1"></i></a>
 
             </div>
           </div>

@@ -33,11 +33,10 @@
     <!-- Page plugins -->
     <!-- Argon CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('argon/css/argon.css?v=1.2.0') }}" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css">
 
-    @livewireStyles
+
 </head>
 
 <body>
@@ -84,40 +83,12 @@
     <script src="{{ asset('argon/js/argon.js?v=1.2.0') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
-    @livewireScripts
 
-    @yield('js')
 
-    @stack('js')
 
-    <script>
-        // $(document).ready(function() {
-        //     $('#motocicletas').DataTable();
-        // });
 
-        // $(document).ready(function() {
-        //     $('#productos').DataTable();
-        // });
 
-        Livewire.on('alert', ($message) => {
-            Swal.fire(
-                'Buen trabajo!',
-                $message,
-                'success'
-            )
-        })
-
-        Livewire.on('alert-limit', ($message) => {
-            Swal.fire(
-                '¡Operacion Fallida!',
-                $message,
-                'warning'
-            )
-        })
-    </script>
 
 </body>
 

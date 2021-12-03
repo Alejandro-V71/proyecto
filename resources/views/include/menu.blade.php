@@ -99,6 +99,18 @@
 
       </a>
     </li>
+
+    <li class="nav-item">
+        @can('dash.reporteCuenta.index')
+        <a class="nav-link {{request()->is('dash/tecnico/reporte/final') ? 'active' : ''}}" href="{{route('reporteFinal')}}">
+          <i class="ni ni-archive-2 text-orange"></i>
+        <span class="nav-link-text">Reporte Final</span>
+
+        @endcan
+
+
+      </a>
+    </li>
     </ul>
     </ul>
   </div>

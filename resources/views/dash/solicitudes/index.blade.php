@@ -12,8 +12,13 @@
   </nav>
 </div>
 <br>
+@if (Auth::user()->hasRole('Cliente'))
+    <h3>Bienvenido</h3>
+@else
 <button type="submit" data-toggle="collapse" href="#mostrarDetalles" class="btn btn-success btn-sm"><i class="fas fa-info-circle"></i> Detalles</button>
 <button type="submit" data-toggle="collapse" href="#table" class="btn btn-success btn-sm">Solicitudes</button>
+@endif
+
 
 @livewire('solicitudes.solicitud-servicios')
 @endsection
