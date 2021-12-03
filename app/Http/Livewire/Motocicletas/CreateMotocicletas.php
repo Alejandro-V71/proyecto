@@ -2,14 +2,20 @@
 
 namespace App\Http\Livewire\Motocicletas;
 
+use App\Models\Categoria;
+use App\Models\Linea;
+use App\Models\Marca;
+use App\Models\Motocicleta;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateMotocicletas extends Component
 {
 
-    public $marca_id = "", $categoria_id = "", $linea_id = "", $user_id="";
+    public $marca_id = "", $categoria_id = "", $linea_id = "", $user_id = "";
     public $marcas, $categorias = [], $lineas = [], $linea_seleccionada, $users = [];
-    public $number, $placa, $modelo, $color, $cilindraje;
+    public $number, $placaMotocicleta, $modelo, $colorMotocicleta, $cilindraje, $kilometraje;
 
     public function mount()
     {
@@ -19,13 +25,13 @@ class CreateMotocicletas extends Component
     }
 
     protected $rules = [
-        'placaMotocicleta' => 'required|unique:motocicletas,placa|min:6|max:6',
-        'colorMotocicleta' => 'required|numeric',
-        'cilindraje' => 'required|alpha',
-        'kilometraje' => 'required',
+        'placaMotocicleta' => 'required|unique:motocicletas,placaMotocicleta|min:6|max:6',
+        'colorMotocicleta' => 'required|alpha',
+        'cilindraje' => 'required|numeric',
+        'kilometraje' => 'required|numeric',
         'categoria_id' => 'required',
         'linea_id' => 'required',
-        // 'cilindraje' => 'required',
+        'marca_id' => 'required',
         'user_id' => 'required'
     ];
 
@@ -50,7 +56,7 @@ class CreateMotocicletas extends Component
     }
 
 
-public function updatedUserId()
+    public function updatedUserId()
     {
         $this->validateOnly('user_id');
     }
@@ -74,6 +80,41 @@ public function updatedUserId()
         $this->validateOnly('linea_id');
         $this->linea_seleccionada = Linea::where('id', $value)->first();
     }
+
+    public function clean()
+    {
+        $this->reset(['placaMotocicleta', 'colorMotocicleta', 'marca_id', 'categoria_id', 'linea_id', 'cilindraje', 'user_id', 'linea_seleccionada']);
+        $this->resetValidation();
+    }
+
+    public function save()
+    {
+        if ($this->number != 1) {
+            $this->user_id = Auth::user()->id;
+        }
+
+        $this->validate();
+
+        Motocicleta::create([
+            'placaMotocicleta' => $this->placaMotocicleta,
+            'colorMotocicleta' => $this->colorMotocicleta,
+            'cilindraje' => $this->cilindraje,
+            'kilometraje' => $this->kilometraje,
+            'marca_id' => $this->marca_id,
+            'categoria_id' => $this->categoria_id,
+            'linea_id' => $this->linea_id,
+            'user_id' => $this->user_id,
+        ]);
+
+        $this->reset(['placaMotocicleta', 'colorMotocicleta', 'marca_id', 'categoria_id', 'linea_id', 'cilindraje', 'user_id', 'linea_seleccionada']);
+
+        $this->emitTo('motocicletas.index-motocicletas', 'render');
+
+        $this->emit('alert', 'La motocicleta se registro satisfactoriamente');
+
+        $this->emit('close');
+    }
+
     public function render()
     {
         return view('livewire.motocicletas.create-motocicletas');

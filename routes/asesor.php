@@ -26,3 +26,8 @@ Route::get('dash/asesor/rol', function () {
     return view('dash.rol.index');
 })->name('role');
 
+Route::get('dash/cliente/motocicletas', function () {
+    // abort_if(Gate::denies('motocicleta_index'), 403);
+    return view('dash.motocicleta.index');
+})->name('motocicletas');
+

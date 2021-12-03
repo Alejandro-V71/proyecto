@@ -19,12 +19,14 @@ class CreateLineasTable extends Migration
 
             // relación uno a muchos con la tabla Marca
 
-            $table->unsignedBigInteger("marca_id")->nullable();
-            $table->foreign("marca_id")
-                  ->references("id")
-                  ->on("marcas")
-                  ->onDelete("set null")
-                  ->onUpdate("cascade");
+            // $table->unsignedBigInteger("marca_id")->nullable();
+            // $table->foreign("marca_id")
+            //       ->references("id")
+            //       ->on("marcas")
+            //       ->onDelete("set null")
+            //       ->onUpdate("cascade");
+
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
 
             //----------------------------
             $table->timestamps();

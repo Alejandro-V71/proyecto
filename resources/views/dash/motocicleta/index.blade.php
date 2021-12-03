@@ -5,22 +5,22 @@
 @section('contenido')
 
 
+    @if (Auth::user()->hasRole('Asesor'))
+        @livewire('motocicletas.index-motocicletas', ['number' => 1])
+    @else
+        @livewire('motocicletas.index-motocicletas')
+    @endif
 
-
-
-
-@livewire('motocicletas.index-motocicletas')
-
-
-
-
-@stop
+@endsection
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+@endsection
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-
-@stop
+    <script>
+        $(document).ready(function() {
+            $('#motocicletas').DataTable();
+        });
+    </script>
+@endsection

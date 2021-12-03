@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
 
             'name' => 'samuel casallas',
             'email'=> 'samuel@gmail.com',
-            'password' => bcrypt('Cs123456')
+            'password' => bcrypt('Cs123456'),
+            'email_verified_at' => now(),
         ])->assignRole('Asesor');
 
 

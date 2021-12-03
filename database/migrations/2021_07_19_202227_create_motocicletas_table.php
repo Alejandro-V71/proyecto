@@ -15,33 +15,36 @@ class CreateMotocicletasTable extends Migration
     {
         Schema::create('motocicletas', function (Blueprint $table) {
             $table->id();
-            $table->string("placaMotocicleta",6);
-            $table->string("colorMotocicleta",20);
-            $table->string("cilindraje",20);
-            $table->string("kilometraje",20);
+            $table->string("placaMotocicleta", 6);
+            $table->string("colorMotocicleta", 20);
+            $table->string("cilindraje", 20);
+            $table->string("kilometraje", 20);
 
             // relacion uno a muchos con la tabla User
 
             $table->unsignedBigInteger("user_id")->nullable();
             $table->foreign("user_id")->references("id")->on("users")
-                                                        ->onDelete("set null")
-                                                        ->onUpdate("cascade");
+                ->onDelete("set null")
+                ->onUpdate("cascade");
 
 
             //relacion uno a muchos con la tabla categoria
 
             $table->unsignedBigInteger("categoria_id")->nullable();
             $table->foreign("categoria_id")->references("id")->on("categorias")
-                                                        ->onDelete("set null")
-                                                        ->onUpdate("cascade");
+                ->onDelete("set null")
+                ->onUpdate("cascade");
 
 
             //relacion uno a mucho con la tabla marca
 
             $table->unsignedBigInteger("marca_id")->nullable();
             $table->foreign("marca_id")->references("id")->on("marcas")
-                                                        ->onDelete("set null")
-                                                        ->onUpdate("cascade");
+                ->onDelete("set null")
+                ->onUpdate("cascade");
+
+            $table->foreignId('linea_id')->nullable()->constrained("lineas")->cascadeOnUpdate()->cascadeOnDelete();
+
 
             $table->timestamps();
         });

@@ -15,7 +15,10 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string("nombreCategoria",30);
+            $table->string("nombreCategoria", 30);
+
+            $table->foreignId('marca_id')->nullable()->constrained("marcas")->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

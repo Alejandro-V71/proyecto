@@ -17,4 +17,14 @@ class Linea extends Model
     public function marca(){
         return $this->belongsTo(Marca::class);
     }
+
+    //Relacion entre linea y categoria
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
+    }
+
+    //Relacion entre linea y motocicleta
+    public function motocicletas(){
+        return $this->hasMany(Motocicleta::class);
+    }
 }

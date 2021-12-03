@@ -17,74 +17,107 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>Motorbike fix</title>
-  <!-- Favicon -->
-  <link rel="icon" href="{{asset('inciosesion/img/logoFinal.png')}}" type="image/png">
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
-  <link rel="stylesheet" href="{{asset('argon/vendor/nucleo/css/nucleo.css')}}" type="text/css">
-  <link rel="stylesheet" href="{{asset('argon/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
-  <!-- Page plugins -->
-  <!-- Argon CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{asset('argon/css/argon.css?v=1.2.0')}}" type="text/css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Motorbike fix</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('inciosesion/img/logoFinal.png') }}" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{ asset('argon/vendor/nucleo/css/nucleo.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('argon/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}"
+        type="text/css">
+    <!-- Page plugins -->
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('argon/css/argon.css?v=1.2.0') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css">
+
+    @livewireStyles
 </head>
 
 <body>
-  <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-    <div class="scrollbar-inner">
-      <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{{asset('argon/img/brand/fondo2.jpeg')}}" class="navbar-brand-img" alt="...">
-        </a>
-      </div>
+    <!-- Sidenav -->
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div class="scrollbar-inner">
+            <!-- Brand -->
+            <div class="sidenav-header  align-items-center">
+                <a class="navbar-brand" href="javascript:void(0)">
+                    <img src="{{ asset('argon/img/brand/fondo2.jpeg') }}" class="navbar-brand-img" alt="...">
+                </a>
+            </div>
 
-        <!-- Collapse -->
-        @include('include.menu')
+            <!-- Collapse -->
+            @include('include.menu')
+
+        </div>
+    </nav>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        {{--  --}}
+        @include('include.nav')
+        <div class="container-fluid ">
+            @yield('contenido')
+        </div>
+
+
 
     </div>
-  </nav>
-  <!-- Main content -->
-  <div class="main-content" id="panel">
-    <!-- Topnav -->
-    {{--  --}}
-    @include('include.nav')
-    <div class="container-fluid ">
-    @yield('contenido')
     </div>
+    <!-- Argon Scripts -->
+    <!-- Core -->
+    @include('sweetalert::alert')
+    <script src="{{ asset('argon/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('argon/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('argon/vendor/js-cookie/js.cookie.js') }}"></script>
+    <script src="{{ asset('argon/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
+    <script src="{{ asset('argon/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+    <!-- Optional JS -->
+    <script src="{{ asset('argon/vendor/chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ asset('argon/vendor/chart.js/dist/Chart.extension.js') }}"></script>
+    <!-- Argon JS -->
+    <script src="{{ asset('argon/js/argon.js?v=1.2.0') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
+    @livewireScripts
 
-    </div>
-  </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  @include('sweetalert::alert')
-  <script src="{{asset('argon/vendor/jquery/dist/jquery.min.js')}}"></script>
-  <script src="{{asset('argon/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('argon/vendor/js-cookie/js.cookie.js')}}"></script>
-  <script src="{{asset('argon/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
-  <script src="{{asset('argon/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
-  <!-- Optional JS -->
-  <script src="{{asset('argon/vendor/chart.js/dist/Chart.min.js')}}"></script>
-  <script src="{{asset('argon/vendor/chart.js/dist/Chart.extension.js')}}"></script>
-  <!-- Argon JS -->
-  <script src="{{asset('argon/js/argon.js?v=1.2.0')}}"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('js')
 
-  <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    @stack('js')
 
-@yield('js')
+    <script>
+        // $(document).ready(function() {
+        //     $('#motocicletas').DataTable();
+        // });
+
+        // $(document).ready(function() {
+        //     $('#productos').DataTable();
+        // });
+
+        Livewire.on('alert', ($message) => {
+            Swal.fire(
+                'Buen trabajo!',
+                $message,
+                'success'
+            )
+        })
+
+        Livewire.on('alert-limit', ($message) => {
+            Swal.fire(
+                '¡Operacion Fallida!',
+                $message,
+                'warning'
+            )
+        })
+    </script>
 
 </body>
 
