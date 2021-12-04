@@ -19,8 +19,29 @@
 
 @section('js')
     <script>
-        $(document).ready(function() {
-            $('#motocicletas').DataTable();
-        });
+        // $(document).ready(function() {
+        //     $('#motocicletas').DataTable();
+        // });
+
+        // $(document).ready(function() {
+        //     $('#productos').DataTable();
+        // });
+
+        Livewire.on('alert', ($message) => {
+            Swal.fire(
+                'Buen trabajo!',
+                $message,
+                'success'
+            )
+        })
+
+        Livewire.on('alert-limit', ($message) => {
+            Swal.fire(
+                '¡Operacion Fallida!',
+                $message,
+                'warning'
+            )
+        })
+
     </script>
 @endsection

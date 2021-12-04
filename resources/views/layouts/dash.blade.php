@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{ asset('argon/css/argon.css?v=1.2.0') }}" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css">
 
-
+    @livewireStyles
 </head>
 
 <body>
@@ -83,13 +83,10 @@
     <script src="{{ asset('argon/js/argon.js?v=1.2.0') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    @livewireScripts
 
-
-
-
-
-
-
+    @yield('js')
+    @stack('js')
 </body>
 
 </html>
