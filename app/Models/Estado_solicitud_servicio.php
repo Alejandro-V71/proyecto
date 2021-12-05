@@ -17,11 +17,13 @@ class estado_solicitud_servicio extends Model
     ];
 
     //relacion uno a muchos inversa
-    public function solicitudServicio(){
+    public function solicitudServicio()
+    {
         return $this->belongsTo(SolicitudServicio::class, 'solicitud_id')->withDefault();
     }
 
-    public function estado(){
+    public function estado()
+    {
         return $this->belongsTo(Estado::class);
     }
 }
