@@ -16,7 +16,7 @@ class CreateViewSelectTable extends Migration
     {
         DB::statement("
         
-        CREATE VIEW reporteEstado AS SELECT DISTINCT
+        CREATE VIEW reporteEstado AS SELECT
         lineas.nombreLinea AS nombreLinea,
         marcas."nombreMarca" AS nombreMarca,
         categorias."nombreCategoria" AS nombreCategoria,
