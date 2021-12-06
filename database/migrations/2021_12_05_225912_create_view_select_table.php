@@ -15,32 +15,31 @@ class CreateViewSelectTable extends Migration
     public function up()
     {
         DB::statement("
-        
-        CREATE VIEW reporteEstado AS
-        SELECT DISTINCT
-    `d43kgnrlp6o9jh`.`lineas`.`nombreLinea` AS `nombreLinea`,
-    `d43kgnrlp6o9jh`.`marcas`.`nombreMarca` AS `nombreMarca`,
-    `d43kgnrlp6o9jh`.`categorias`.`nombreCategoria` AS `nombreCategoria`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`id` AS `id`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`placaMotocicleta` AS `placaMotocicleta`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`colorMotocicleta` AS `colorMotocicleta`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`cilindraje` AS `cilindraje`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`kilometraje` AS `kilometraje`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`categoria_id` AS `categoria_id`,
-    `d43kgnrlp6o9jh`.`motocicletas`.`marca_id` AS `marca_id`,
-    `d43kgnrlp6o9jh`.`users`.`name` AS `name`,
-    `d43kgnrlp6o9jh`.`users`.`email` AS `email`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`id` AS `solicitud_id`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`title` AS `title`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`horaSolcitudServicio` AS `horaSolcitudServicio`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`descripcionProblema` AS `descripcionProblema`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`Start` AS `start`,
-    `d43kgnrlp6o9jh`.`solicitud_servicios`.`End` AS `end`,
-    `d43kgnrlp6o9jh`.`estado_solicitud_servicio`.`estado_id` AS `estado_id`,
-    `d43kgnrlp6o9jh`.`detalle_solicituds`.`diagnostico` AS `diagnostico`,
-    `d43kgnrlp6o9jh`.`servicios`.`nombreServicio` AS `nombreServicio`,
-    `d43kgnrlp6o9jh`.`servicios`.`precioTotal` AS `precioTotal`,
-    `d43kgnrlp6o9jh`.`detalle_solicitud_repuesto`.`detalle_solicitud_id` AS `detalle_solicitud_id`
+            CREATE VIEW reporteEstado AS
+            SELECT DISTINCT
+    `lineas`.`nombreLinea` AS `nombreLinea`,
+    `marcas`.`nombreMarca` AS `nombreMarca`,
+    `categorias`.`nombreCategoria` AS `nombreCategoria`,
+    `motocicletas`.`id` AS `id`,
+    `motocicletas`.`placaMotocicleta` AS `placaMotocicleta`,
+    `motocicletas`.`colorMotocicleta` AS `colorMotocicleta`,
+    `motocicletas`.`cilindraje` AS `cilindraje`,
+    `motocicletas`.`kilometraje` AS `kilometraje`,
+    `motocicletas`.`categoria_id` AS `categoria_id`,
+    `motocicletas`.`marca_id` AS `marca_id`,
+    `users`.`name` AS `name`,
+    `users`.`email` AS `email`,
+    `solicitud_servicios`.`id` AS `solicitud_id`,
+    `solicitud_servicios`.`title` AS `title`,
+    `solicitud_servicios`.`horaSolcitudServicio` AS `horaSolcitudServicio`,
+    `solicitud_servicios`.`descripcionProblema` AS `descripcionProblema`,
+    `solicitud_servicios`.`Start` AS `start`,
+    `solicitud_servicios`.`End` AS `end`,
+    `estado_solicitud_servicio`.`estado_id` AS `estado_id`,
+    `detalle_solicituds`.`diagnostico` AS `diagnostico`,
+    `servicios`.`nombreServicio` AS `nombreServicio`,
+    `servicios`.`precioTotal` AS `precioTotal`,
+    `detalle_solicitud_repuesto`.`detalle_solicitud_id` AS `detalle_solicitud_id`
 FROM
     (
         (
@@ -51,53 +50,52 @@ FROM
                             (
                                 (
                                     (
-                                        `d43kgnrlp6o9jh`.`motocicletas`
-                                    JOIN `d43kgnrlp6o9jh`.`lineas` ON
+                                        `motocicletas`
+                                    JOIN `lineas` ON
                                         (
-                                            `d43kgnrlp6o9jh`.`lineas`.`id` = `d43kgnrlp6o9jh`.`motocicletas`.`linea_id`
+                                            `lineas`.`id` = `motocicletas`.`linea_id`
                                         )
                                     )
-                                JOIN `d43kgnrlp6o9jh`.`marcas` ON
+                                JOIN `marcas` ON
                                     (
-                                        `d43kgnrlp6o9jh`.`marcas`.`id` = `d43kgnrlp6o9jh`.`motocicletas`.`marca_id`
+                                        `marcas`.`id` = `motocicletas`.`marca_id`
                                     )
                                 )
-                            JOIN `d43kgnrlp6o9jh`.`categorias` ON
+                            JOIN `categorias` ON
                                 (
-                                    `d43kgnrlp6o9jh`.`categorias`.`id` = `d43kgnrlp6o9jh`.`motocicletas`.`categoria_id`
+                                    `categorias`.`id` = `motocicletas`.`categoria_id`
                                 )
                             )
-                        JOIN `d43kgnrlp6o9jh`.`users` ON
+                        JOIN `users` ON
                             (
-                                `d43kgnrlp6o9jh`.`users`.`id` = `d43kgnrlp6o9jh`.`motocicletas`.`user_id`
+                                `users`.`id` = `motocicletas`.`user_id`
                             )
                         )
-                    JOIN `d43kgnrlp6o9jh`.`solicitud_servicios` ON
+                    JOIN `solicitud_servicios` ON
                         (
-                            `d43kgnrlp6o9jh`.`solicitud_servicios`.`user_id` = `d43kgnrlp6o9jh`.`users`.`id`
+                            `solicitud_servicios`.`user_id` = `users`.`id`
                         )
                     )
-                JOIN `d43kgnrlp6o9jh`.`estado_solicitud_servicio` ON
+                JOIN `estado_solicitud_servicio` ON
                     (
-                        `d43kgnrlp6o9jh`.`estado_solicitud_servicio`.`solicitud_id` = `d43kgnrlp6o9jh`.`solicitud_servicios`.`id`
+                        `estado_solicitud_servicio`.`solicitud_id` = `solicitud_servicios`.`id`
                     )
                 )
-            JOIN `d43kgnrlp6o9jh`.`detalle_solicituds` ON
+            JOIN `detalle_solicituds` ON
                 (
-                    `d43kgnrlp6o9jh`.`detalle_solicituds`.`solicitud_servicio_id` = `d43kgnrlp6o9jh`.`solicitud_servicios`.`id`
+                    `detalle_solicituds`.`solicitud_servicio_id` = `solicitud_servicios`.`id`
                 )
             )
-        JOIN `d43kgnrlp6o9jh`.`servicios` ON
+        JOIN `servicios` ON
             (
-                `d43kgnrlp6o9jh`.`servicios`.`id` = `d43kgnrlp6o9jh`.`detalle_solicituds`.`servicio_id`
+                `servicios`.`id` = `detalle_solicituds`.`servicio_id`
             )
         )
-    JOIN `d43kgnrlp6o9jh`.`detalle_solicitud_repuesto` ON
+    JOIN `detalle_solicitud_repuesto` ON
         (
-            `d43kgnrlp6o9jh`.`detalle_solicitud_repuesto`.`detalle_solicitud_id` = `d43kgnrlp6o9jh`.`detalle_solicituds`.`id`
+            `detalle_solicitud_repuesto`.`detalle_solicitud_id` = `detalle_solicituds`.`id`
         )
     )
-        
         ");
     }
 
