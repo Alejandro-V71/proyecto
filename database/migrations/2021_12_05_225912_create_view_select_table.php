@@ -103,6 +103,6 @@ class CreateViewSelectTable extends Migration
      */
     public function down()
     {
-        /* DB::statement("DROP VIEW reporteEstado"); */
+        DB::statement("DROP VIEW reporteEstado");
     }
 }
