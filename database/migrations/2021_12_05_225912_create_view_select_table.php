@@ -16,30 +16,30 @@ class CreateViewSelectTable extends Migration
     {
         DB::statement("
         
-        CREATE VIEW reporteEstado AS SELECT
+        CREATE VIEW reporteEstado AS SELECT DISTINCT
         lineas.nombreLinea AS nombreLinea,
-        marcas."nombreMarca" AS nombreMarca,
-        categorias."nombreCategoria" AS nombreCategoria,
-        motocicletas."id" AS id,
-        motocicletas."placaMotocicleta" AS placaMotocicleta,
-        motocicletas."colorMotocicleta" AS colorMotocicleta,
-        motocicletas."cilindraje" AS cilindraje,
-        motocicletas."kilometraje" AS kilometraje,
-        motocicletas."categoria_id" AS categoria_id,
-        motocicletas."marca_id" AS marca_id,
-        users."name" AS NAME,
-        users."email" AS email,
-        solicitud_servicios."id" AS solicitud_id,
-        solicitud_servicios."title" AS title,
-        solicitud_servicios."horaSolcitudServicio" AS horaSolcitudServicio,
-        solicitud_servicios."descripcionProblema" AS descripcionProblema,
-        solicitud_servicios."Start" AS START,
-        solicitud_servicios."End" AS END,
-    estado_solicitud_servicio."estado_id" AS estado_id,
-    detalle_solicituds."diagnostico" AS diagnostico,
-    servicios."nombreServicio" AS nombreServicio,
-    servicios."precioTotal" AS precioTotal,
-    detalle_solicitud_repuesto."detalle_solicitud_id" AS detalle_solicitud_id
+        marcas.nombreMarca AS nombreMarca,
+        categorias.nombreCategoria AS nombreCategoria,
+        motocicletas.id AS id,
+        motocicletas.placaMotocicleta AS placaMotocicleta,
+        motocicletas.colorMotocicleta AS colorMotocicleta,
+        motocicletas.cilindraje AS cilindraje,
+        motocicletas.kilometraje AS kilometraje,
+        motocicletas.categoria_id AS categoria_id,
+        motocicletas.marca_id AS marca_id,
+        users.name AS NAME,
+        users.email AS email,
+        solicitud_servicios.id AS solicitud_id,
+        solicitud_servicios.title AS title,
+        solicitud_servicios.horaSolcitudServicio AS horaSolcitudServicio,
+        solicitud_servicios.descripcionProblema AS descripcionProblema,
+        solicitud_servicios.Start AS START,
+        solicitud_servicios.End AS END,
+    estado_solicitud_servicio.estado_id AS estado_id,
+    detalle_solicituds.diagnostico AS diagnostico,
+    servicios.nombreServicio AS nombreServicio,
+    servicios.precioTotal AS precioTotal,
+    detalle_solicitud_repuesto.detalle_solicitud_id AS detalle_solicitud_id
 FROM
     motocicletas
 JOIN lineas ON(
