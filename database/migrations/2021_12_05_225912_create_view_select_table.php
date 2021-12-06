@@ -43,31 +43,31 @@ class CreateViewSelectTable extends Migration
 FROM
     motocicletas
 JOIN lineas ON(
-        lineas."id" = motocicletas."linea_id"
+        lineas.id = motocicletas.linea_id
     )
 JOIN marcas ON(
-        marcas."id" = motocicletas."marca_id"
+        marcas.id = motocicletas.marca_id
     )
 JOIN categorias ON(
-        categorias."id" = motocicletas."categoria_id"
+        categorias.id = motocicletas.categoria_id
     )
 JOIN users ON(
-        users."id" = motocicletas."user_id"
+        users.id = motocicletas.user_id
     )
 JOIN solicitud_servicios ON(
-        solicitud_servicios."user_id" = users."id"
+        solicitud_servicios.user_id = users.id
     )
 JOIN estado_solicitud_servicio ON(
-        estado_solicitud_servicio."solicitud_id" = solicitud_servicios."id"
+        estado_solicitud_servicio.solicitud_id = solicitud_servicios.id
     )
 JOIN detalle_solicituds ON(
-        detalle_solicituds."solicitud_servicio_id" = solicitud_servicios."id"
+        detalle_solicituds.solicitud_servicio_id = solicitud_servicios.id
     )
 JOIN servicios ON(
-        servicios."id" = detalle_solicituds."servicio_id"
+        servicios.id = detalle_solicituds.servicio_id
     )
 JOIN detalle_solicitud_repuesto ON(
-        detalle_solicitud_repuesto."detalle_solicitud_id" = detalle_solicituds."id"
+        detalle_solicitud_repuesto.detalle_solicitud_id = detalle_solicituds.id
     )
         
         ");
