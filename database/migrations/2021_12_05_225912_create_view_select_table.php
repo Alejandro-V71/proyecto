@@ -17,29 +17,29 @@ class CreateViewSelectTable extends Migration
         DB::statement("
             CREATE VIEW reporteEstado AS
             SELECT DISTINCT
-    `lineas`.`nombreLinea` AS `nombreLinea`,
-    `marcas`.`nombreMarca` AS `nombreMarca`,
-    `categorias`.`nombreCategoria` AS `nombreCategoria`,
-    `motocicletas`.`id` AS `id`,
-    `motocicletas`.`placaMotocicleta` AS `placaMotocicleta`,
-    `motocicletas`.`colorMotocicleta` AS `colorMotocicleta`,
-    `motocicletas`.`cilindraje` AS `cilindraje`,
-    `motocicletas`.`kilometraje` AS `kilometraje`,
-    `motocicletas`.`categoria_id` AS `categoria_id`,
-    `motocicletas`.`marca_id` AS `marca_id`,
-    `users`.`name` AS `name`,
-    `users`.`email` AS `email`,
-    `solicitud_servicios`.`id` AS `solicitud_id`,
-    `solicitud_servicios`.`title` AS `title`,
-    `solicitud_servicios`.`horaSolcitudServicio` AS `horaSolcitudServicio`,
-    `solicitud_servicios`.`descripcionProblema` AS `descripcionProblema`,
-    `solicitud_servicios`.`Start` AS `start`,
-    `solicitud_servicios`.`End` AS `end`,
-    `estado_solicitud_servicio`.`estado_id` AS `estado_id`,
-    `detalle_solicituds`.`diagnostico` AS `diagnostico`,
-    `servicios`.`nombreServicio` AS `nombreServicio`,
-    `servicios`.`precioTotal` AS `precioTotal`,
-    `detalle_solicitud_repuesto`.`detalle_solicitud_id` AS `detalle_solicitud_id`
+    lineas.nombreLinea AS nombreLinea,
+    marcas.nombreMarca AS nombreMarca,
+    categorias.nombreCategoria AS nombreCategoria,
+    motocicletas.id AS id,
+    motocicletas.placaMotocicleta AS placaMotocicleta,
+    motocicletas.colorMotocicleta AS colorMotocicleta,
+    motocicletas.cilindraje AS cilindraje,
+    motocicletas.kilometraje AS kilometraje,
+    motocicletas.categoria_id AS categoria_id,
+    motocicletas.marca_id AS marca_id,
+    users.name AS name,
+    users.email AS email,
+    solicitud_servicios.id AS solicitud_id,
+    solicitud_servicios.title AS title,
+    solicitud_servicios.horaSolcitudServicio AS horaSolcitudServicio,
+    solicitud_servicios.descripcionProblema AS descripcionProblema,
+    solicitud_servicios.Start AS start,
+    solicitud_servicios.End AS end,
+    estado_solicitud_servicio.estado_id AS estado_id,
+    detalle_solicituds.diagnostico AS diagnostico,
+    servicios.nombreServicio AS nombreServicio,
+    servicios.precioTotal AS precioTotal,
+    detalle_solicitud_repuesto.detalle_solicitud_id AS detalle_solicitud_id
 FROM
     (
         (
@@ -50,50 +50,50 @@ FROM
                             (
                                 (
                                     (
-                                        `motocicletas`
-                                    JOIN `lineas` ON
+                                        motocicletas
+                                    JOIN lineas ON
                                         (
-                                            `lineas`.`id` = `motocicletas`.`linea_id`
+                                            lineas.id = motocicletas.linea_id
                                         )
                                     )
-                                JOIN `marcas` ON
+                                JOIN marcas ON
                                     (
-                                        `marcas`.`id` = `motocicletas`.`marca_id`
+                                        marcas.id = motocicletas.marca_id
                                     )
                                 )
-                            JOIN `categorias` ON
+                            JOIN categorias ON
                                 (
-                                    `categorias`.`id` = `motocicletas`.`categoria_id`
+                                    categorias.id = motocicletas.categoria_id
                                 )
                             )
-                        JOIN `users` ON
+                        JOIN users ON
                             (
-                                `users`.`id` = `motocicletas`.`user_id`
+                                users.id = motocicletas.user_id
                             )
                         )
-                    JOIN `solicitud_servicios` ON
+                    JOIN solicitud_servicios ON
                         (
-                            `solicitud_servicios`.`user_id` = `users`.`id`
+                            solicitud_servicios.user_id = users.id
                         )
                     )
-                JOIN `estado_solicitud_servicio` ON
+                JOIN estado_solicitud_servicio ON
                     (
-                        `estado_solicitud_servicio`.`solicitud_id` = `solicitud_servicios`.`id`
+                        estado_solicitud_servicio.solicitud_id = solicitud_servicios.id
                     )
                 )
-            JOIN `detalle_solicituds` ON
+            JOIN detalle_solicituds ON
                 (
-                    `detalle_solicituds`.`solicitud_servicio_id` = `solicitud_servicios`.`id`
+                    detalle_solicituds.solicitud_servicio_id = solicitud_servicios.id
                 )
             )
-        JOIN `servicios` ON
+        JOIN servicios ON
             (
-                `servicios`.`id` = `detalle_solicituds`.`servicio_id`
+                servicios.id = detalle_solicituds.servicio_id
             )
         )
-    JOIN `detalle_solicitud_repuesto` ON
+    JOIN detalle_solicitud_repuesto ON
         (
-            `detalle_solicitud_repuesto`.`detalle_solicitud_id` = `detalle_solicituds`.`id`
+            detalle_solicitud_repuesto.detalle_solicitud_id = detalle_solicituds.id
         )
     )
         ");
