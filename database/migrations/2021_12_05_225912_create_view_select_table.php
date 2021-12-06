@@ -14,7 +14,7 @@ class CreateViewSelectTable extends Migration
      */
     public function up()
     {
-        /* DB::statement(""); */
+        DB::statement("");
     }
 
     /**
